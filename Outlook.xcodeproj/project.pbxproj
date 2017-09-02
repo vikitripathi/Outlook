@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		024BDF9F1F5B3CC900CEEAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDF9E1F5B3CC900CEEAE0 /* AppDelegate.swift */; };
+		024BDFA11F5B3CC900CEEAE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFA01F5B3CC900CEEAE0 /* ViewController.swift */; };
+		024BDFA41F5B3CC900CEEAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */; };
+		024BDFA71F5B3CC900CEEAE0 /* Outlook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFA51F5B3CC900CEEAE0 /* Outlook.xcdatamodeld */; };
+		024BDFA91F5B3CC900CEEAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA81F5B3CC900CEEAE0 /* Assets.xcassets */; };
+		024BDFAC1F5B3CC900CEEAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFAA1F5B3CC900CEEAE0 /* LaunchScreen.storyboard */; };
+		024BDFB71F5B3CCA00CEEAE0 /* OutlookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFB61F5B3CCA00CEEAE0 /* OutlookTests.swift */; };
+		024BDFC21F5B3CCA00CEEAE0 /* OutlookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFC11F5B3CCA00CEEAE0 /* OutlookUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		024BDFB31F5B3CCA00CEEAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 024BDF931F5B3CC900CEEAE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 024BDF9A1F5B3CC900CEEAE0;
+			remoteInfo = Outlook;
+		};
+		024BDFBE1F5B3CCA00CEEAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 024BDF931F5B3CC900CEEAE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 024BDF9A1F5B3CC900CEEAE0;
+			remoteInfo = Outlook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		024BDF9B1F5B3CC900CEEAE0 /* Outlook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outlook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		024BDF9E1F5B3CC900CEEAE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		024BDFA01F5B3CC900CEEAE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		024BDFA31F5B3CC900CEEAE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		024BDFA61F5B3CC900CEEAE0 /* Outlook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Outlook.xcdatamodel; sourceTree = "<group>"; };
+		024BDFA81F5B3CC900CEEAE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		024BDFAB1F5B3CC900CEEAE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		024BDFAD1F5B3CC900CEEAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		024BDFB21F5B3CCA00CEEAE0 /* OutlookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutlookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		024BDFB61F5B3CCA00CEEAE0 /* OutlookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlookTests.swift; sourceTree = "<group>"; };
+		024BDFB81F5B3CCA00CEEAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		024BDFBD1F5B3CCA00CEEAE0 /* OutlookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutlookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		024BDFC11F5B3CCA00CEEAE0 /* OutlookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlookUITests.swift; sourceTree = "<group>"; };
+		024BDFC31F5B3CCA00CEEAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		024BDF981F5B3CC900CEEAE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFAF1F5B3CCA00CEEAE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFBA1F5B3CCA00CEEAE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		024BDF921F5B3CC900CEEAE0 = {
+			isa = PBXGroup;
+			children = (
+				024BDF9D1F5B3CC900CEEAE0 /* Outlook */,
+				024BDFB51F5B3CCA00CEEAE0 /* OutlookTests */,
+				024BDFC01F5B3CCA00CEEAE0 /* OutlookUITests */,
+				024BDF9C1F5B3CC900CEEAE0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		024BDF9C1F5B3CC900CEEAE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				024BDF9B1F5B3CC900CEEAE0 /* Outlook.app */,
+				024BDFB21F5B3CCA00CEEAE0 /* OutlookTests.xctest */,
+				024BDFBD1F5B3CCA00CEEAE0 /* OutlookUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		024BDF9D1F5B3CC900CEEAE0 /* Outlook */ = {
+			isa = PBXGroup;
+			children = (
+				024BDF9E1F5B3CC900CEEAE0 /* AppDelegate.swift */,
+				024BDFA01F5B3CC900CEEAE0 /* ViewController.swift */,
+				024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */,
+				024BDFA81F5B3CC900CEEAE0 /* Assets.xcassets */,
+				024BDFAA1F5B3CC900CEEAE0 /* LaunchScreen.storyboard */,
+				024BDFAD1F5B3CC900CEEAE0 /* Info.plist */,
+				024BDFA51F5B3CC900CEEAE0 /* Outlook.xcdatamodeld */,
+			);
+			path = Outlook;
+			sourceTree = "<group>";
+		};
+		024BDFB51F5B3CCA00CEEAE0 /* OutlookTests */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFB61F5B3CCA00CEEAE0 /* OutlookTests.swift */,
+				024BDFB81F5B3CCA00CEEAE0 /* Info.plist */,
+			);
+			path = OutlookTests;
+			sourceTree = "<group>";
+		};
+		024BDFC01F5B3CCA00CEEAE0 /* OutlookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFC11F5B3CCA00CEEAE0 /* OutlookUITests.swift */,
+				024BDFC31F5B3CCA00CEEAE0 /* Info.plist */,
+			);
+			path = OutlookUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		024BDF9A1F5B3CC900CEEAE0 /* Outlook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 024BDFC61F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "Outlook" */;
+			buildPhases = (
+				024BDF971F5B3CC900CEEAE0 /* Sources */,
+				024BDF981F5B3CC900CEEAE0 /* Frameworks */,
+				024BDF991F5B3CC900CEEAE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Outlook;
+			productName = Outlook;
+			productReference = 024BDF9B1F5B3CC900CEEAE0 /* Outlook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		024BDFB11F5B3CCA00CEEAE0 /* OutlookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 024BDFC91F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookTests" */;
+			buildPhases = (
+				024BDFAE1F5B3CCA00CEEAE0 /* Sources */,
+				024BDFAF1F5B3CCA00CEEAE0 /* Frameworks */,
+				024BDFB01F5B3CCA00CEEAE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				024BDFB41F5B3CCA00CEEAE0 /* PBXTargetDependency */,
+			);
+			name = OutlookTests;
+			productName = OutlookTests;
+			productReference = 024BDFB21F5B3CCA00CEEAE0 /* OutlookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		024BDFBC1F5B3CCA00CEEAE0 /* OutlookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 024BDFCC1F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookUITests" */;
+			buildPhases = (
+				024BDFB91F5B3CCA00CEEAE0 /* Sources */,
+				024BDFBA1F5B3CCA00CEEAE0 /* Frameworks */,
+				024BDFBB1F5B3CCA00CEEAE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				024BDFBF1F5B3CCA00CEEAE0 /* PBXTargetDependency */,
+			);
+			name = OutlookUITests;
+			productName = OutlookUITests;
+			productReference = 024BDFBD1F5B3CCA00CEEAE0 /* OutlookUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		024BDF931F5B3CC900CEEAE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "abhishek dutt";
+				TargetAttributes = {
+					024BDF9A1F5B3CC900CEEAE0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 236WEL7W7T;
+						ProvisioningStyle = Automatic;
+					};
+					024BDFB11F5B3CCA00CEEAE0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 236WEL7W7T;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 024BDF9A1F5B3CC900CEEAE0;
+					};
+					024BDFBC1F5B3CCA00CEEAE0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 236WEL7W7T;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 024BDF9A1F5B3CC900CEEAE0;
+					};
+				};
+			};
+			buildConfigurationList = 024BDF961F5B3CC900CEEAE0 /* Build configuration list for PBXProject "Outlook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 024BDF921F5B3CC900CEEAE0;
+			productRefGroup = 024BDF9C1F5B3CC900CEEAE0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				024BDF9A1F5B3CC900CEEAE0 /* Outlook */,
+				024BDFB11F5B3CCA00CEEAE0 /* OutlookTests */,
+				024BDFBC1F5B3CCA00CEEAE0 /* OutlookUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		024BDF991F5B3CC900CEEAE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024BDFAC1F5B3CC900CEEAE0 /* LaunchScreen.storyboard in Resources */,
+				024BDFA91F5B3CC900CEEAE0 /* Assets.xcassets in Resources */,
+				024BDFA41F5B3CC900CEEAE0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFB01F5B3CCA00CEEAE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFBB1F5B3CCA00CEEAE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		024BDF971F5B3CC900CEEAE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024BDFA11F5B3CC900CEEAE0 /* ViewController.swift in Sources */,
+				024BDF9F1F5B3CC900CEEAE0 /* AppDelegate.swift in Sources */,
+				024BDFA71F5B3CC900CEEAE0 /* Outlook.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFAE1F5B3CCA00CEEAE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024BDFB71F5B3CCA00CEEAE0 /* OutlookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024BDFB91F5B3CCA00CEEAE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024BDFC21F5B3CCA00CEEAE0 /* OutlookUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		024BDFB41F5B3CCA00CEEAE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 024BDF9A1F5B3CC900CEEAE0 /* Outlook */;
+			targetProxy = 024BDFB31F5B3CCA00CEEAE0 /* PBXContainerItemProxy */;
+		};
+		024BDFBF1F5B3CCA00CEEAE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 024BDF9A1F5B3CC900CEEAE0 /* Outlook */;
+			targetProxy = 024BDFBE1F5B3CCA00CEEAE0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				024BDFA31F5B3CC900CEEAE0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		024BDFAA1F5B3CC900CEEAE0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				024BDFAB1F5B3CC900CEEAE0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		024BDFC41F5B3CCA00CEEAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		024BDFC51F5B3CCA00CEEAE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		024BDFC71F5B3CCA00CEEAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = Outlook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.Outlook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		024BDFC81F5B3CCA00CEEAE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = Outlook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.Outlook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		024BDFCA1F5B3CCA00CEEAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = OutlookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.OutlookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Outlook.app/Outlook";
+			};
+			name = Debug;
+		};
+		024BDFCB1F5B3CCA00CEEAE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = OutlookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.OutlookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Outlook.app/Outlook";
+			};
+			name = Release;
+		};
+		024BDFCD1F5B3CCA00CEEAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = OutlookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.OutlookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Outlook;
+			};
+			name = Debug;
+		};
+		024BDFCE1F5B3CCA00CEEAE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 236WEL7W7T;
+				INFOPLIST_FILE = OutlookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.quikr.OutlookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Outlook;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		024BDF961F5B3CC900CEEAE0 /* Build configuration list for PBXProject "Outlook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				024BDFC41F5B3CCA00CEEAE0 /* Debug */,
+				024BDFC51F5B3CCA00CEEAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		024BDFC61F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "Outlook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				024BDFC71F5B3CCA00CEEAE0 /* Debug */,
+				024BDFC81F5B3CCA00CEEAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		024BDFC91F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				024BDFCA1F5B3CCA00CEEAE0 /* Debug */,
+				024BDFCB1F5B3CCA00CEEAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		024BDFCC1F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				024BDFCD1F5B3CCA00CEEAE0 /* Debug */,
+				024BDFCE1F5B3CCA00CEEAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		024BDFA51F5B3CC900CEEAE0 /* Outlook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				024BDFA61F5B3CC900CEEAE0 /* Outlook.xcdatamodel */,
+			);
+			currentVersion = 024BDFA61F5B3CC900CEEAE0 /* Outlook.xcdatamodel */;
+			path = Outlook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 024BDF931F5B3CC900CEEAE0 /* Project object */;
+}
