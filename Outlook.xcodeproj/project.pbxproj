@@ -7,14 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0233B94B1F5C91FA003491C0 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233B9491F5C91FA003491C0 /* EventTableViewCell.swift */; };
+		0233B94C1F5C91FA003491C0 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0233B94A1F5C91FA003491C0 /* EventTableViewCell.xib */; };
+		0233B94E1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233B94D1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift */; };
 		024BDF9F1F5B3CC900CEEAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDF9E1F5B3CC900CEEAE0 /* AppDelegate.swift */; };
 		024BDFA11F5B3CC900CEEAE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFA01F5B3CC900CEEAE0 /* ViewController.swift */; };
-		024BDFA41F5B3CC900CEEAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */; };
 		024BDFA71F5B3CC900CEEAE0 /* Outlook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFA51F5B3CC900CEEAE0 /* Outlook.xcdatamodeld */; };
 		024BDFA91F5B3CC900CEEAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA81F5B3CC900CEEAE0 /* Assets.xcassets */; };
 		024BDFAC1F5B3CC900CEEAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFAA1F5B3CC900CEEAE0 /* LaunchScreen.storyboard */; };
 		024BDFB71F5B3CCA00CEEAE0 /* OutlookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFB61F5B3CCA00CEEAE0 /* OutlookTests.swift */; };
 		024BDFC21F5B3CCA00CEEAE0 /* OutlookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFC11F5B3CCA00CEEAE0 /* OutlookUITests.swift */; };
+		024BDFD11F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFCF1F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift */; };
+		024BDFD21F5B3D4A00CEEAE0 /* OutlookTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFD01F5B3D4A00CEEAE0 /* OutlookTabBarViewController.xib */; };
+		024BDFD61F5B3DA400CEEAE0 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFD41F5B3DA400CEEAE0 /* MailViewController.swift */; };
+		024BDFD71F5B3DA400CEEAE0 /* MailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFD51F5B3DA400CEEAE0 /* MailViewController.xib */; };
+		024BDFDB1F5B3DC200CEEAE0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFD91F5B3DC200CEEAE0 /* CalendarViewController.swift */; };
+		024BDFDC1F5B3DC200CEEAE0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFDA1F5B3DC200CEEAE0 /* CalendarViewController.xib */; };
+		024BDFDF1F5B3DD200CEEAE0 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFDD1F5B3DD200CEEAE0 /* FileViewController.swift */; };
+		024BDFE01F5B3DD200CEEAE0 /* FileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFDE1F5B3DD200CEEAE0 /* FileViewController.xib */; };
+		024BDFE31F5B3DE300CEEAE0 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFE11F5B3DE300CEEAE0 /* PeopleViewController.swift */; };
+		024BDFE41F5B3DE300CEEAE0 /* PeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFE21F5B3DE300CEEAE0 /* PeopleViewController.xib */; };
+		024BDFE71F5B3F2900CEEAE0 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFE51F5B3F2900CEEAE0 /* DateViewController.swift */; };
+		024BDFE81F5B3F2900CEEAE0 /* DateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFE61F5B3F2900CEEAE0 /* DateViewController.xib */; };
+		024BDFEC1F5B3F4300CEEAE0 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFEA1F5B3F4300CEEAE0 /* EventViewController.swift */; };
+		024BDFED1F5B3F4300CEEAE0 /* EventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFEB1F5B3F4300CEEAE0 /* EventViewController.xib */; };
+		024BDFEF1F5B6E5300CEEAE0 /* CalendarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFEE1F5B6E5300CEEAE0 /* CalendarConstants.swift */; };
+		024BDFF11F5B962A00CEEAE0 /* OutlookHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFF01F5B962A00CEEAE0 /* OutlookHelper.swift */; };
+		024BDFF51F5BAE6500CEEAE0 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */; };
+		024BDFF61F5BAE6500CEEAE0 /* DateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */; };
+		024BDFF71F5BB5E000CEEAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0233B9491F5C91FA003491C0 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCell.swift; path = CalendarModule/EventTableViewCell.swift; sourceTree = "<group>"; };
+		0233B94A1F5C91FA003491C0 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventTableViewCell.xib; path = CalendarModule/EventTableViewCell.xib; sourceTree = "<group>"; };
+		0233B94D1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCellHeaderView.swift; path = CalendarModule/EventTableViewCellHeaderView.swift; sourceTree = "<group>"; };
 		024BDF9B1F5B3CC900CEEAE0 /* Outlook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outlook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		024BDF9E1F5B3CC900CEEAE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		024BDFA01F5B3CC900CEEAE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +73,24 @@
 		024BDFBD1F5B3CCA00CEEAE0 /* OutlookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutlookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		024BDFC11F5B3CCA00CEEAE0 /* OutlookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlookUITests.swift; sourceTree = "<group>"; };
 		024BDFC31F5B3CCA00CEEAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		024BDFCF1F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutlookTabBarViewController.swift; path = TabBar/OutlookTabBarViewController.swift; sourceTree = "<group>"; };
+		024BDFD01F5B3D4A00CEEAE0 /* OutlookTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutlookTabBarViewController.xib; path = TabBar/OutlookTabBarViewController.xib; sourceTree = "<group>"; };
+		024BDFD41F5B3DA400CEEAE0 /* MailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailViewController.swift; path = ViewControllers/MailViewController.swift; sourceTree = "<group>"; };
+		024BDFD51F5B3DA400CEEAE0 /* MailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MailViewController.xib; path = ViewControllers/MailViewController.xib; sourceTree = "<group>"; };
+		024BDFD91F5B3DC200CEEAE0 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ViewControllers/CalendarViewController.swift; sourceTree = "<group>"; };
+		024BDFDA1F5B3DC200CEEAE0 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarViewController.xib; path = ViewControllers/CalendarViewController.xib; sourceTree = "<group>"; };
+		024BDFDD1F5B3DD200CEEAE0 /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileViewController.swift; path = ViewControllers/FileViewController.swift; sourceTree = "<group>"; };
+		024BDFDE1F5B3DD200CEEAE0 /* FileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileViewController.xib; path = ViewControllers/FileViewController.xib; sourceTree = "<group>"; };
+		024BDFE11F5B3DE300CEEAE0 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = ViewControllers/PeopleViewController.swift; sourceTree = "<group>"; };
+		024BDFE21F5B3DE300CEEAE0 /* PeopleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PeopleViewController.xib; path = ViewControllers/PeopleViewController.xib; sourceTree = "<group>"; };
+		024BDFE51F5B3F2900CEEAE0 /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateViewController.swift; path = CalendarModule/DateViewController.swift; sourceTree = "<group>"; };
+		024BDFE61F5B3F2900CEEAE0 /* DateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateViewController.xib; path = CalendarModule/DateViewController.xib; sourceTree = "<group>"; };
+		024BDFEA1F5B3F4300CEEAE0 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = CalendarModule/EventViewController.swift; sourceTree = "<group>"; };
+		024BDFEB1F5B3F4300CEEAE0 /* EventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventViewController.xib; path = CalendarModule/EventViewController.xib; sourceTree = "<group>"; };
+		024BDFEE1F5B6E5300CEEAE0 /* CalendarConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarConstants.swift; path = CalendarModule/CalendarConstants.swift; sourceTree = "<group>"; };
+		024BDFF01F5B962A00CEEAE0 /* OutlookHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutlookHelper.swift; path = UtilityHelper/OutlookHelper.swift; sourceTree = "<group>"; };
+		024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateCollectionViewCell.swift; path = CalendarModule/DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateCollectionViewCell.xib; path = CalendarModule/DateCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +148,10 @@
 				024BDFAA1F5B3CC900CEEAE0 /* LaunchScreen.storyboard */,
 				024BDFAD1F5B3CC900CEEAE0 /* Info.plist */,
 				024BDFA51F5B3CC900CEEAE0 /* Outlook.xcdatamodeld */,
+				024BDFD31F5B3D4E00CEEAE0 /* TabBar */,
+				024BDFD81F5B3DA900CEEAE0 /* ViewControllers */,
+				024BDFE91F5B3F2D00CEEAE0 /* CalendarModule */,
+				024BDFF21F5B962F00CEEAE0 /* UtilityHelper */,
 			);
 			path = Outlook;
 			sourceTree = "<group>";
@@ -126,6 +172,55 @@
 				024BDFC31F5B3CCA00CEEAE0 /* Info.plist */,
 			);
 			path = OutlookUITests;
+			sourceTree = "<group>";
+		};
+		024BDFD31F5B3D4E00CEEAE0 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFCF1F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift */,
+				024BDFD01F5B3D4A00CEEAE0 /* OutlookTabBarViewController.xib */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		024BDFD81F5B3DA900CEEAE0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFD41F5B3DA400CEEAE0 /* MailViewController.swift */,
+				024BDFD51F5B3DA400CEEAE0 /* MailViewController.xib */,
+				024BDFD91F5B3DC200CEEAE0 /* CalendarViewController.swift */,
+				024BDFDA1F5B3DC200CEEAE0 /* CalendarViewController.xib */,
+				024BDFDD1F5B3DD200CEEAE0 /* FileViewController.swift */,
+				024BDFDE1F5B3DD200CEEAE0 /* FileViewController.xib */,
+				024BDFE11F5B3DE300CEEAE0 /* PeopleViewController.swift */,
+				024BDFE21F5B3DE300CEEAE0 /* PeopleViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		024BDFE91F5B3F2D00CEEAE0 /* CalendarModule */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFE51F5B3F2900CEEAE0 /* DateViewController.swift */,
+				024BDFE61F5B3F2900CEEAE0 /* DateViewController.xib */,
+				024BDFEA1F5B3F4300CEEAE0 /* EventViewController.swift */,
+				024BDFEB1F5B3F4300CEEAE0 /* EventViewController.xib */,
+				024BDFEE1F5B6E5300CEEAE0 /* CalendarConstants.swift */,
+				024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */,
+				024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */,
+				0233B9491F5C91FA003491C0 /* EventTableViewCell.swift */,
+				0233B94A1F5C91FA003491C0 /* EventTableViewCell.xib */,
+				0233B94D1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift */,
+			);
+			name = CalendarModule;
+			sourceTree = "<group>";
+		};
+		024BDFF21F5B962F00CEEAE0 /* UtilityHelper */ = {
+			isa = PBXGroup;
+			children = (
+				024BDFF01F5B962A00CEEAE0 /* OutlookHelper.swift */,
+			);
+			name = UtilityHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,9 +333,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0233B94C1F5C91FA003491C0 /* EventTableViewCell.xib in Resources */,
+				024BDFF71F5BB5E000CEEAE0 /* Main.storyboard in Resources */,
+				024BDFD21F5B3D4A00CEEAE0 /* OutlookTabBarViewController.xib in Resources */,
+				024BDFF61F5BAE6500CEEAE0 /* DateCollectionViewCell.xib in Resources */,
+				024BDFE01F5B3DD200CEEAE0 /* FileViewController.xib in Resources */,
+				024BDFD71F5B3DA400CEEAE0 /* MailViewController.xib in Resources */,
+				024BDFDC1F5B3DC200CEEAE0 /* CalendarViewController.xib in Resources */,
 				024BDFAC1F5B3CC900CEEAE0 /* LaunchScreen.storyboard in Resources */,
+				024BDFE81F5B3F2900CEEAE0 /* DateViewController.xib in Resources */,
+				024BDFE41F5B3DE300CEEAE0 /* PeopleViewController.xib in Resources */,
+				024BDFED1F5B3F4300CEEAE0 /* EventViewController.xib in Resources */,
 				024BDFA91F5B3CC900CEEAE0 /* Assets.xcassets in Resources */,
-				024BDFA41F5B3CC900CEEAE0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,9 +369,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024BDFEF1F5B6E5300CEEAE0 /* CalendarConstants.swift in Sources */,
+				024BDFDB1F5B3DC200CEEAE0 /* CalendarViewController.swift in Sources */,
+				024BDFE31F5B3DE300CEEAE0 /* PeopleViewController.swift in Sources */,
+				024BDFF11F5B962A00CEEAE0 /* OutlookHelper.swift in Sources */,
+				0233B94B1F5C91FA003491C0 /* EventTableViewCell.swift in Sources */,
+				024BDFD11F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift in Sources */,
 				024BDFA11F5B3CC900CEEAE0 /* ViewController.swift in Sources */,
 				024BDF9F1F5B3CC900CEEAE0 /* AppDelegate.swift in Sources */,
+				024BDFEC1F5B3F4300CEEAE0 /* EventViewController.swift in Sources */,
 				024BDFA71F5B3CC900CEEAE0 /* Outlook.xcdatamodeld in Sources */,
+				0233B94E1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift in Sources */,
+				024BDFD61F5B3DA400CEEAE0 /* MailViewController.swift in Sources */,
+				024BDFE71F5B3F2900CEEAE0 /* DateViewController.swift in Sources */,
+				024BDFDF1F5B3DD200CEEAE0 /* FileViewController.swift in Sources */,
+				024BDFF51F5BAE6500CEEAE0 /* DateCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +634,7 @@
 				024BDFC81F5B3CCA00CEEAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		024BDFC91F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +643,7 @@
 				024BDFCB1F5B3CCA00CEEAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		024BDFCC1F5B3CCA00CEEAE0 /* Build configuration list for PBXNativeTarget "OutlookUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +652,7 @@
 				024BDFCE1F5B3CCA00CEEAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

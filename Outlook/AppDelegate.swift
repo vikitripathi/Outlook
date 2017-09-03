@@ -13,10 +13,24 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var tabBarController: OutlookTabBarViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        tabBarController = OutlookTabBarViewController()
+        window?.rootViewController = tabBarController
+        
+        tabBarController?.selectedIndex = 1
+        window?.addSubview((tabBarController?.view)!)
+        window?.makeKeyAndVisible()
+        
+        tabBarController?.view.alpha = 0.5
+        
+        weak var weakSelf = self
+        UIView.animate(withDuration: 1.0) {
+            weakSelf?.tabBarController?.view.alpha = 1.0
+        }
+        
         return true
     }
 
