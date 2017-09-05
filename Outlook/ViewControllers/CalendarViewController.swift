@@ -16,7 +16,7 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet var dateViewHeight: NSLayoutConstraint!
     
-    var dateViewState: Calendar.ViewsCategory?
+    var dateViewState: OutlookCalendar.ViewsCategory?
     
     fileprivate lazy var dateViewController: DateViewController = {
         var viewController = DateViewController()
@@ -42,7 +42,7 @@ class CalendarViewController: UIViewController {
         
         navigationController?.navigationBar.isTranslucent = false
         
-        dateViewState = Calendar.ViewsCategory.DateView(state: .Normal)
+        dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
         
         dateViewController.delegate = self
         eventsViewController.delegate = self
@@ -106,7 +106,7 @@ class CalendarViewController: UIViewController {
         }
         
         
-        let newHeightConstraintConstant: CGFloat = Calendar.getDateViewVisibleHeight(forDateView: dateViewState!, andContainerViewFrameSize: viewSize)
+        let newHeightConstraintConstant: CGFloat = OutlookCalendar.getDateViewVisibleHeight(forDateView: dateViewState!, andContainerViewFrameSize: viewSize)
         dateViewHeight.constant = newHeightConstraintConstant
         
         weak var weakSelf = self
@@ -125,7 +125,7 @@ extension CalendarViewController: DateViewDelegate {
     
     func showDateViewAsActiveView(_ isActive: Bool) {
         if isActive {
-            dateViewState = Calendar.ViewsCategory.DateView(state: .Focussed)
+            dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Focussed)
             configureView(0.5)
         }
     }
@@ -139,7 +139,7 @@ extension CalendarViewController: EventViewDelegate {
     
     func showEventViewAsActiveView(_ isActive: Bool) {
         if isActive {
-            dateViewState = Calendar.ViewsCategory.DateView(state: .Normal)
+            dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
             configureView(0.5)
         }
     }

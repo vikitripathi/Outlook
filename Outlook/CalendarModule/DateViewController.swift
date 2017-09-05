@@ -13,6 +13,8 @@ protocol DateViewDelegate: class {
     func showDateViewAsActiveView(_ isActive: Bool)
 }
 
+//create datasource and dataprovider
+
 class DateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate  {
 
     @IBOutlet var collectionView: UICollectionView!
@@ -20,7 +22,8 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     weak var delegate: DateViewDelegate?
     
     private var panGesture: UIPanGestureRecognizer?
-    private var isActiveState = false
+    
+    private var dateList = [DateModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +32,15 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.register(UINib(nibName: "DateCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "dateCell")
         
         self.panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-
+        
+        //move to service protocol
+        let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
+        weak var weakSelf = self
+        concurrentQueue.async {
+            weakSelf?.dateList = CalendarModuleDataProvider().currentDateList
+            weakSelf?.collectionView.reloadData()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,7 +93,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 93
+        return dateList.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,6 +103,8 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell",
                                                       for: indexPath) as! DateCollectionViewCell
+        let currentCellModel = dateList[indexPath.row] as DateModel
+        cell.dateLabel.text = String(describing: currentCellModel.thisDay) //currentCellModel.thisDay
         
         return cell
     }
@@ -100,7 +113,6 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as! DateCollectionViewCell
-        cell.dateLabel.text = String(describing: indexPath.row)
         if cell.isSelected {
             cell.selectedStateBackgroundView.isHidden = false
         }else {

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum Calendar {
+enum OutlookCalendar {
     
     enum DateView {
         static let DaysInARow = 7
@@ -82,9 +82,9 @@ enum Calendar {
             case .DateView(let state):
                 switch state {
                 case .Focussed:
-                    return Calendar.DateView.RowsInFoucssedState
+                    return OutlookCalendar.DateView.RowsInFoucssedState
                 case .Normal:
-                    return Calendar.DateView.RowsInNormalState
+                    return OutlookCalendar.DateView.RowsInNormalState
                 }
             default:
                 return 0

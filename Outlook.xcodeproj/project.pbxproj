@@ -36,6 +36,10 @@
 		024BDFF51F5BAE6500CEEAE0 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */; };
 		024BDFF61F5BAE6500CEEAE0 /* DateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */; };
 		024BDFF71F5BB5E000CEEAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024BDFA21F5B3CC900CEEAE0 /* Main.storyboard */; };
+		02D33FDC1F5CECED0067A87D /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D33FDB1F5CECED0067A87D /* CalendarModel.swift */; };
+		02D33FDE1F5CED0C0067A87D /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D33FDD1F5CED0C0067A87D /* DateModel.swift */; };
+		02D33FE01F5CED1D0067A87D /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D33FDF1F5CED1D0067A87D /* EventModel.swift */; };
+		02D33FE31F5D6F0C0067A87D /* CalendarModuleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D33FE21F5D6F0C0067A87D /* CalendarModuleDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,10 @@
 		024BDFF01F5B962A00CEEAE0 /* OutlookHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutlookHelper.swift; path = UtilityHelper/OutlookHelper.swift; sourceTree = "<group>"; };
 		024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateCollectionViewCell.swift; path = CalendarModule/DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateCollectionViewCell.xib; path = CalendarModule/DateCollectionViewCell.xib; sourceTree = "<group>"; };
+		02D33FDB1F5CECED0067A87D /* CalendarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarModel.swift; path = CalendarModule/Model/CalendarModel.swift; sourceTree = "<group>"; };
+		02D33FDD1F5CED0C0067A87D /* DateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateModel.swift; path = CalendarModule/Model/DateModel.swift; sourceTree = "<group>"; };
+		02D33FDF1F5CED1D0067A87D /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventModel.swift; path = CalendarModule/Model/EventModel.swift; sourceTree = "<group>"; };
+		02D33FE21F5D6F0C0067A87D /* CalendarModuleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarModuleDataProvider.swift; path = CalendarModule/Model/CalendarModuleDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +219,7 @@
 				0233B9491F5C91FA003491C0 /* EventTableViewCell.swift */,
 				0233B94A1F5C91FA003491C0 /* EventTableViewCell.xib */,
 				0233B94D1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift */,
+				02D33FE11F5CED210067A87D /* Model */,
 			);
 			name = CalendarModule;
 			sourceTree = "<group>";
@@ -221,6 +230,17 @@
 				024BDFF01F5B962A00CEEAE0 /* OutlookHelper.swift */,
 			);
 			name = UtilityHelper;
+			sourceTree = "<group>";
+		};
+		02D33FE11F5CED210067A87D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02D33FDB1F5CECED0067A87D /* CalendarModel.swift */,
+				02D33FDD1F5CED0C0067A87D /* DateModel.swift */,
+				02D33FDF1F5CED1D0067A87D /* EventModel.swift */,
+				02D33FE21F5D6F0C0067A87D /* CalendarModuleDataProvider.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,13 +391,17 @@
 			files = (
 				024BDFEF1F5B6E5300CEEAE0 /* CalendarConstants.swift in Sources */,
 				024BDFDB1F5B3DC200CEEAE0 /* CalendarViewController.swift in Sources */,
+				02D33FDE1F5CED0C0067A87D /* DateModel.swift in Sources */,
 				024BDFE31F5B3DE300CEEAE0 /* PeopleViewController.swift in Sources */,
 				024BDFF11F5B962A00CEEAE0 /* OutlookHelper.swift in Sources */,
 				0233B94B1F5C91FA003491C0 /* EventTableViewCell.swift in Sources */,
+				02D33FE31F5D6F0C0067A87D /* CalendarModuleDataProvider.swift in Sources */,
 				024BDFD11F5B3D4A00CEEAE0 /* OutlookTabBarViewController.swift in Sources */,
 				024BDFA11F5B3CC900CEEAE0 /* ViewController.swift in Sources */,
 				024BDF9F1F5B3CC900CEEAE0 /* AppDelegate.swift in Sources */,
 				024BDFEC1F5B3F4300CEEAE0 /* EventViewController.swift in Sources */,
+				02D33FE01F5CED1D0067A87D /* EventModel.swift in Sources */,
+				02D33FDC1F5CECED0067A87D /* CalendarModel.swift in Sources */,
 				024BDFA71F5B3CC900CEEAE0 /* Outlook.xcdatamodeld in Sources */,
 				0233B94E1F5CB4E5003491C0 /* EventTableViewCellHeaderView.swift in Sources */,
 				024BDFD61F5B3DA400CEEAE0 /* MailViewController.swift in Sources */,
