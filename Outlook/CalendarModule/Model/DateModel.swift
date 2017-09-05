@@ -30,6 +30,38 @@ struct DateModel {
         case Saturday
     }
     
+    //Put a enum for viewmodel instead of model
+    func getCurrentMonth() -> String {
+        switch currentMonth {
+        case 1:
+            return "Jan"
+        case 2:
+            return "Feb"
+        case 3:
+            return "Mar"
+        case 4:
+            return "Apr"
+        case 5:
+            return "May"
+        case 6:
+            return "Jun"
+        case 7:
+            return "Jul"
+        case 8:
+            return "Aug"
+        case 9:
+            return "Sep"
+        case 10:
+            return "Oct"
+        case 11:
+            return "Nov"
+        case 12:
+            return "Dec"
+        default:
+            return "Invalid"
+        }
+    }
+    
     init(date: Date = Date()) {
         thisDate = date
         
@@ -102,6 +134,12 @@ extension DateModel {
         return DateModel(date: twoMonthsAgoDate)
         
     }()
+    
+    mutating func offsetDateModel(byMonth month: Int) {
+        thisDate = (DateModel.myCalendar as NSCalendar).date(byAdding: .month, value: month, to: thisDate)!
+        
+        setupDateModel(from: thisDate)
+    }
 }
 
 extension DateModel: Comparable {
@@ -128,6 +166,6 @@ extension DateModel: Comparable {
 
 extension DateModel: CustomStringConvertible {
     var description: String {
-        return "(date: \(thisDay),day: \(day) ,month: \(currentMonth))"
+        return "(date: \(thisDay),day: \(day) ,month: \(currentMonth),year: \(currentYear))"
     }
 }

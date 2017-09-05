@@ -13,6 +13,8 @@ class DateCollectionViewCell: UICollectionViewCell {
     @IBOutlet var selectedStateBackgroundView: UIView!
     @IBOutlet var dateLabel: UILabel!
     
+    @IBOutlet var yearLabel: UILabel!
+    @IBOutlet var monthLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

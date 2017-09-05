@@ -24,6 +24,10 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var panGesture: UIPanGestureRecognizer?
     
     private var dateList = [DateModel]()
+    private var dataProvider = CalendarModuleDataProvider()
+    
+    private var isLoading = false
+    private var isInitialLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +41,17 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
         weak var weakSelf = self
         concurrentQueue.async {
-            weakSelf?.dateList = CalendarModuleDataProvider().currentDateList
-            weakSelf?.collectionView.reloadData()
+            //use guard let for wealself or check unowned
+            //weakSelf?.isLoading = true
+            weakSelf?.dateList = (weakSelf?.dataProvider.currentDateList)!
+            
+            DispatchQueue.main.async {
+                weakSelf?.collectionView.reloadData()
+                //weakSelf?.isLoading = false
+                let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
+                weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +97,62 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: - ScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let scrolleViewBoundsHeight = scrollView.bounds.size.height
+        //print("offsetY: \(offsetY) , contentHeight: \(contentHeight) , boundsHeight: \(scrolleViewBoundsHeight)")
         
+        if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight)) {
+            let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
+            weak var weakSelf = self
+            concurrentQueue.async {
+                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
+                DispatchQueue.main.async {
+                    weakSelf?.collectionView.reloadData()
+                }
+            }
+            
+        }
+        
+        
+//        if isLoading {
+//            return
+//        }
+//        //let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
+//        let currentRowIndex = indexPath.row
+//        
+//        //move to service protocol
+//        let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
+//        weak var weakSelf = self
+//        
+//        if (currentRowIndex == 28) {
+//            concurrentQueue.async {
+//                //use guard let for wealself or check unowned
+//                weakSelf?.isLoading = true
+//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!
+//                
+//                DispatchQueue.main.async {
+//                    weakSelf?.collectionView.reloadData()
+//                    //                    let indexPath = IndexPath(row: currentRowIndex, section: 0)
+//                    //                    weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+//                    weakSelf?.isLoading = false
+//                }
+//            }
+//            
+//        }else if (currentRowIndex == (dateList.count - 28)) {
+//            concurrentQueue.async {
+//                //use guard let for wealself or check unowned
+//                weakSelf?.isLoading = true
+//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
+//                
+//                DispatchQueue.main.async {
+//                    weakSelf?.collectionView.reloadData()
+//                    //                    let indexPath = IndexPath(row: currentRowIndex, section: 0)
+//                    //                    weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+//                    weakSelf?.isLoading = false
+//                }
+//            }
+//        }
     }
     
     
@@ -104,7 +170,12 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell",
                                                       for: indexPath) as! DateCollectionViewCell
         let currentCellModel = dateList[indexPath.row] as DateModel
-        cell.dateLabel.text = String(describing: currentCellModel.thisDay) //currentCellModel.thisDay
+        
+        //configure cell
+        cell.dateLabel.text = String(describing: currentCellModel.thisDay)
+        cell.monthLabel.text = currentCellModel.getCurrentMonth()
+        //cell.yearLabel.text = String(describing: currentCellModel.currentYear)
+        cell.yearLabel.isHidden = true
         
         return cell
     }
@@ -118,6 +189,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         }else {
             cell.selectedStateBackgroundView.isHidden = true
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

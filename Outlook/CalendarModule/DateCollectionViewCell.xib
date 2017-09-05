@@ -12,40 +12,58 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="gTV-IL-0wX" customClass="DateCollectionViewCell" customModule="Outlook" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="60" height="68"/>
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="60" height="68"/>
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcV-N9-D73">
-                        <rect key="frame" x="10" y="14" width="40" height="40"/>
-                        <color key="backgroundColor" red="0.054901960784313725" green="0.47843137254901957" blue="0.99607843137254903" alpha="1" colorSpace="deviceRGB"/>
+                        <rect key="frame" x="5" y="5" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Ps9-ol-AdZ"/>
                             <constraint firstAttribute="height" constant="40" id="nP0-nP-yCA"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-TA-1JK">
-                        <rect key="frame" x="30" y="34" width="0.0" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-Mw-U72">
+                        <rect key="frame" x="12.5" y="3" width="25.5" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Jan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi1-rE-V40">
+                                <rect key="frame" x="0.0" y="0.0" width="25.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-TA-1JK">
+                                <rect key="frame" x="0.0" y="13.5" width="25.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="2017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-iJ-crP">
+                                <rect key="frame" x="0.0" y="30.5" width="25.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="bJp-TA-1JK" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="DTE-Y0-YVc"/>
+                <constraint firstItem="hDe-Mw-U72" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="AOi-7n-PTG"/>
                 <constraint firstItem="HcV-N9-D73" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="L6Q-zK-nhq"/>
-                <constraint firstItem="bJp-TA-1JK" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="h7d-8c-71H"/>
+                <constraint firstItem="hDe-Mw-U72" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="nhB-wP-ZOs"/>
                 <constraint firstItem="HcV-N9-D73" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="pwX-zj-AzM"/>
             </constraints>
-            <size key="customSize" width="60" height="68"/>
+            <size key="customSize" width="50" height="47"/>
             <connections>
                 <outlet property="dateLabel" destination="bJp-TA-1JK" id="RCJ-Sx-yLa"/>
+                <outlet property="monthLabel" destination="Yi1-rE-V40" id="3Sj-zC-uxC"/>
                 <outlet property="selectedStateBackgroundView" destination="HcV-N9-D73" id="98X-G3-zgx"/>
+                <outlet property="yearLabel" destination="bzM-iJ-crP" id="SmY-zB-L3r"/>
             </connections>
-            <point key="canvasLocation" x="39" y="63"/>
+            <point key="canvasLocation" x="34" y="52.5"/>
         </collectionViewCell>
     </objects>
 </document>
