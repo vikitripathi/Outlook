@@ -49,7 +49,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
                 weakSelf?.collectionView.reloadData()
                 //weakSelf?.isLoading = false
                 let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
-                weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+                weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
             }
         }
     }
@@ -100,7 +100,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrolleViewBoundsHeight = scrollView.bounds.size.height
-        //print("offsetY: \(offsetY) , contentHeight: \(contentHeight) , boundsHeight: \(scrolleViewBoundsHeight)")
+        print("offsetY: \(offsetY) , contentHeight: \(contentHeight) , boundsHeight: \(scrolleViewBoundsHeight)")
         
         if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight)) {
             let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
@@ -109,6 +109,27 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
                 weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
                 DispatchQueue.main.async {
                     weakSelf?.collectionView.reloadData()
+                }
+            }
+            
+        }else if (Float(offsetY) != 0 && Int(offsetY) == 50 ) { //make dynamic calculation
+            let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
+            weak var weakSelf = self
+            concurrentQueue.async {
+                let previousCount = weakSelf?.dateList.count
+                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!
+                DispatchQueue.main.async {
+                    weakSelf?.collectionView.reloadData()
+                    //weakSelf?.collectionView.scrollRectToVisible(CGRect, animated: <#T##Bool#>)
+                    //weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+                    print(weakSelf?.dateList.count ?? "Empty")
+                    let currentOffset = weakSelf?.collectionView.contentOffset
+                    let yOffset = Float(((weakSelf?.dateList.count)! - previousCount!) / 7) * Float((weakSelf?.collectionView.frame.size.width)! / 7 )
+                    print(currentOffset ?? "empty current offset")
+                    print(yOffset)
+                    let newOffset = CGPoint(x: (currentOffset?.x)!, y: (currentOffset?.y)! + CGFloat(yOffset))
+                    weakSelf?.collectionView.reloadData()
+                    weakSelf?.collectionView.setContentOffset(newOffset, animated: false)
                 }
             }
             

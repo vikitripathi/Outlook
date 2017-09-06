@@ -109,6 +109,8 @@ class CalendarViewController: UIViewController {
         let newHeightConstraintConstant: CGFloat = OutlookCalendar.getDateViewVisibleHeight(forDateView: dateViewState!, andContainerViewFrameSize: viewSize)
         dateViewHeight.constant = newHeightConstraintConstant
         
+        //neeedsupdateconstriant call?
+        
         weak var weakSelf = self
         UIView.animate(withDuration: Double(animation)) {
             weakSelf?.view.layoutIfNeeded()

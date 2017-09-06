@@ -20,6 +20,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcV-N9-D73">
                         <rect key="frame" x="5" y="5" width="40" height="40"/>
+                        <color key="backgroundColor" red="0.054901960780000002" green="0.47843137250000001" blue="0.99607843139999996" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Ps9-ol-AdZ"/>
                             <constraint firstAttribute="height" constant="40" id="nP0-nP-yCA"/>
