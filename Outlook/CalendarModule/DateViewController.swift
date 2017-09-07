@@ -23,7 +23,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     private var panGesture: UIPanGestureRecognizer?
     
-    private var dateList = [DateModel]()
+    private var dateList = [CalendarModel]()
     private var dataProvider = CalendarModuleDataProvider()
     
     private var isLoading = false
@@ -102,17 +102,21 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         let scrolleViewBoundsHeight = scrollView.bounds.size.height
         print("offsetY: \(offsetY) , contentHeight: \(contentHeight) , boundsHeight: \(scrolleViewBoundsHeight)")
         
-        if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight)) {
+        return
+        if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight)   && !isLoading) {
+            isLoading = true
             let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
             weak var weakSelf = self
             concurrentQueue.async {
                 weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
                 DispatchQueue.main.async {
                     weakSelf?.collectionView.reloadData()
+                    weakSelf?.isLoading = false
                 }
             }
             
-        }else if (Float(offsetY) != 0 && Int(offsetY) == 50 ) { //make dynamic calculation
+        }else if (Float(offsetY) != 0 && Int(offsetY) < 50 && !isLoading ) { //make dynamic calculation
+            isLoading = true
             let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
             weak var weakSelf = self
             concurrentQueue.async {
@@ -130,6 +134,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
                     let newOffset = CGPoint(x: (currentOffset?.x)!, y: (currentOffset?.y)! + CGFloat(yOffset))
                     weakSelf?.collectionView.reloadData()
                     weakSelf?.collectionView.setContentOffset(newOffset, animated: false)
+                    weakSelf?.isLoading = false
                 }
             }
             
@@ -151,7 +156,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell",
                                                       for: indexPath) as! DateCollectionViewCell
-        let currentCellModel = dateList[indexPath.row] as DateModel
+        let currentCellModel = dateList[indexPath.row].date as DateModel
         
         //configure cell
         cell.dateLabel.text = String(describing: currentCellModel.thisDay)

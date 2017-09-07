@@ -28,6 +28,27 @@ struct DateModel {
         case Thursday
         case Friday
         case Saturday
+        
+        func getWeekDayString() -> String {
+            switch self {
+            case .Sunday:
+                return "Sunday"
+            case .Monday:
+                return "Monday"
+            case .Tuesday:
+                return "Tuesday"
+            case .Wednesday:
+                return "Wednesday"
+            case .Thursday:
+                return "Thursday"
+            case .Friday:
+                return "Friday"
+            case .Saturday:
+                return "Saturday"
+            default:
+                return ""
+            }
+        }
     }
     
     //Put a enum for viewmodel instead of model

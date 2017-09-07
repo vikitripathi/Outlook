@@ -10,18 +10,18 @@ import Foundation
 
 //check to add optional feature where needed
 class CalendarModuleDataProvider {
-    private var dateList = [DateModel]()
+    private var dateList = [CalendarModel]()
     
-    var startDate = DateModel.twoMonthsAgoDateModel
-    var endDate = DateModel.twoMonthsLaterDateModel
+    private var startDate = DateModel.twoMonthsAgoDateModel
+    private var endDate = DateModel.twoMonthsLaterDateModel
     
     var currentDateIndex: Int {
-        let currentDateModel = DateModel()
+        let currentDateModel = CalendarModel(date: DateModel(), events: nil)
         return dateList.index(of: currentDateModel)!
     }
     
     //handle other view element or create corresponding viewModel
-    var currentDateList: [DateModel] {
+    var currentDateList: [CalendarModel] {
         startDate.offsetToSunday()
         endDate.offsetToSaturday()
         
@@ -40,42 +40,42 @@ class CalendarModuleDataProvider {
         let endDateModel = endDateModel
         
         while startDateModel <= endDateModel {
-            dateList.append(startDateModel)
+            dateList.append(CalendarModel(date: startDateModel, events: currentEventList))
             startDateModel.next()
         }
     }
     
     // TODO: remove code repeat
-    func updateDateListForPreviousTwoMonths() -> [DateModel] {
+    func updateDateListForPreviousTwoMonths() -> [CalendarModel] {
         let previousStartDate = startDate
-        var newList = [DateModel]()
+        var newList = [CalendarModel]()
         
         startDate.offsetDateModel(byMonth: -2)
         startDate.offsetToSunday()
         
         while startDate < previousStartDate {
-            newList.append(startDate)
+            newList.append(CalendarModel(date: startDate, events: currentEventList)) //add events accordingly from db
             startDate.next()
         }
         return updatedDateList(atStart: true, withList: newList)
     }
     
-    func updateDateListForComingTwoMonths() -> [DateModel] {
+    func updateDateListForComingTwoMonths() -> [CalendarModel] {
         var previousEndDate = endDate
-        var newList = [DateModel]()
+        var newList = [CalendarModel]()
         
         endDate.offsetDateModel(byMonth: 2)
         endDate.offsetToSaturday()
         
         previousEndDate.next()
         while previousEndDate <= endDate {
-            newList.append(previousEndDate)
+            newList.append(CalendarModel(date: previousEndDate, events: currentEventList))
             previousEndDate.next()
         }
         return updatedDateList(atStart: false, withList: newList)
     }
     
-    private func updatedDateList(atStart: Bool, withList newList: [DateModel]) -> [DateModel] {
+    private func updatedDateList(atStart: Bool, withList newList: [CalendarModel]) -> [CalendarModel] {
         var newList = newList
         
         if atStart {

@@ -10,6 +10,15 @@ import Foundation
 
 struct CalendarModel {
     var date: DateModel
-    var events: [EventModel]
+    var events: [EventModel]?
     
+}
+
+
+extension CalendarModel: Equatable {
+    
+    public static func ==(lhs: CalendarModel, rhs: CalendarModel) -> Bool
+    {
+        return (lhs.date == rhs.date)
+    }
 }

@@ -24,8 +24,8 @@ class EventTableViewCellHeaderView: UIView {
         self.addSubview(label!)
     }
     
-    func configureDate(_ section: Int)  {
-        label?.text = "Monday, September \(section)"
+    func configureDate(_ sectionModel: DateModel)  {
+        label?.text = "\(sectionModel.day.getWeekDayString()), \(sectionModel.getCurrentMonth()) \(sectionModel.thisDay)"
     }
     
     required init?(coder aDecoder: NSCoder) {
