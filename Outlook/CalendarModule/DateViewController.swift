@@ -13,6 +13,10 @@ protocol DateViewDelegate: class {
     func showDateViewAsActiveView(_ isActive: Bool)
 }
 
+protocol DateViewDataSource: class {
+    func fetchDateViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ()))
+}
+
 //create datasource and dataprovider
 
 class DateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate  {
@@ -20,6 +24,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet var collectionView: UICollectionView!
     
     weak var delegate: DateViewDelegate?
+    weak var datasource: DateViewDataSource?
     
     private var panGesture: UIPanGestureRecognizer?
     
@@ -37,26 +42,25 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         self.panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         
-        //move to service protocol
-        let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
-        weak var weakSelf = self
-        concurrentQueue.async {
-            //use guard let for wealself or check unowned
-            //weakSelf?.isLoading = true
-            weakSelf?.dateList = (weakSelf?.dataProvider.currentDateList)!
-            
-            DispatchQueue.main.async {
-                weakSelf?.collectionView.reloadData()
-                //weakSelf?.isLoading = false
-                let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
-                weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //as calling in viewdidload is too soon as datasource is not set
+        self.datasource?.fetchDateViewData(isInitialFetch: true, completion: { [weak self] (calendarList) in
+            
+            self?.dateList = calendarList
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                //weakSelf?.isLoading = false
+                let indexPath = IndexPath(row: (self?.dataProvider.currentDayIndex(inCalendarList: calendarList))!, section: 0)
+                self?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+            }
+        })
     }
     
     func handleTap(sender: UIPanGestureRecognizer) {

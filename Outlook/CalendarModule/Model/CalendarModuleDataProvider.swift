@@ -20,6 +20,11 @@ class CalendarModuleDataProvider {
         return dateList.index(of: currentDateModel)!
     }
     
+    func currentDayIndex(inCalendarList list: [CalendarModel]) -> Int {
+        let currentDateModel = CalendarModel(date: DateModel(), events: nil)
+        return list.index(of: currentDateModel)!
+    }
+    
     //handle other view element or create corresponding viewModel
     var currentDateList: [CalendarModel] {
         startDate.offsetToSunday()

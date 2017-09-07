@@ -18,6 +18,9 @@ class CalendarViewController: UIViewController {
     
     var dateViewState: OutlookCalendar.ViewsCategory?
     
+    fileprivate var dataProvider = CalendarModuleDataProvider()
+    fileprivate var dateList = [CalendarModel]()
+    
     fileprivate lazy var dateViewController: DateViewController = {
         var viewController = DateViewController()
         self.add(asChildViewController: viewController)
@@ -34,6 +37,8 @@ class CalendarViewController: UIViewController {
        return CGSize(width: self.view.frame.width, height: self.view.frame.height)
     }()
     
+    let concurrentQueue = DispatchQueue(label: "CalendarModuleConcurrentQueue", attributes: .concurrent)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +50,10 @@ class CalendarViewController: UIViewController {
         dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
         
         dateViewController.delegate = self
+        dateViewController.datasource = self
+        
         eventsViewController.delegate = self
+        eventsViewController.datasource = self
         
     }
     
@@ -118,6 +126,45 @@ class CalendarViewController: UIViewController {
     }
 
 }
+
+extension CalendarViewController: EventViewDataSource {
+    func fetchEventsViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
+        //dataProvider
+        if isInitialFetch {
+            //move to service protocol
+            weak var weakSelf = self
+            concurrentQueue.async(flags: .barrier) {
+                if weakSelf?.dateList.count == 0 {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.currentDateList)!  //TODO: Check race conditions
+                }
+                
+                completion((weakSelf?.dateList)!)
+            }
+        }else {
+            
+        }
+    }
+}
+
+extension CalendarViewController: DateViewDataSource {
+    func fetchDateViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
+        if isInitialFetch {
+            //move to service protocol
+            //use guard let for weakself or check unowned
+            weak var weakSelf = self
+            concurrentQueue.async(flags: .barrier) {
+                if weakSelf?.dateList.count == 0 {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.currentDateList)!  //TODO: Check race conditions
+                }
+                
+                completion((weakSelf?.dateList)!)
+            }
+        }else {
+            
+        }
+    }
+}
+
 
 extension CalendarViewController: DateViewDelegate {
     

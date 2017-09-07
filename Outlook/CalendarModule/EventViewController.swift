@@ -13,10 +13,17 @@ protocol EventViewDelegate: class {
     func showEventViewAsActiveView(_ isActive: Bool)
 }
 
+protocol EventViewDataSource: class {
+    func fetchEventsViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ()))
+}
+
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
+    
     weak var delegate: EventViewDelegate?
+    weak var datasource: EventViewDataSource?
+    
     private var dataProvider = CalendarModuleDataProvider()
     private var dateList = [CalendarModel]()
     
@@ -31,21 +38,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.estimatedRowHeight = 100
         tableView.contentInset = UIEdgeInsets.zero
         
-        //move to service protocol
-        let concurrentQueue = DispatchQueue(label: "EventViewCalendarQueue", attributes: .concurrent)
-        weak var weakSelf = self
-        concurrentQueue.async {
-            //use guard let for wealself or check unowned
-            //weakSelf?.isLoading = true
-            weakSelf?.dateList = (weakSelf?.dataProvider.currentDateList)!
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.datasource?.fetchEventsViewData(isInitialFetch: true, completion: { [weak self] (calendarList) in
             
+            self?.dateList = calendarList
             DispatchQueue.main.async {
-                weakSelf?.tableView.reloadData()
-                //weakSelf?.isLoading = false
-                //let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
-                //weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+                self?.tableView.reloadData()
             }
-        }
+        })
+        //move to service protocol
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,13 +151,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
-        delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
+        //let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+        //delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
-        delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
+        //let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+        //delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
     }
 
 }
