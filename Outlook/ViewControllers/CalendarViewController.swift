@@ -141,8 +141,21 @@ extension CalendarViewController: EventViewDelegate {
     
     func showEventViewAsActiveView(_ isActive: Bool) {
         if isActive {
-            dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
-            configureView(0.5)
+            switch dateViewState! {
+            case .DateView(let state):
+                switch state {
+                case .Normal:
+                    break
+                case .Focussed:
+                    dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
+                    configureView(0.5)
+                }
+                
+            default:
+                break
+            }
+            
+            
         }
     }
 }
