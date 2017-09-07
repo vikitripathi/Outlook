@@ -17,6 +17,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet var tableView: UITableView!
     weak var delegate: EventViewDelegate?
+    private var dataProvider = CalendarModuleDataProvider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
+        cell.configure(withEvent: dataProvider.currentEventList[indexPath.row])
         return cell
     }
     

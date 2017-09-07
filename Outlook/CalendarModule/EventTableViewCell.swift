@@ -32,4 +32,55 @@ class EventTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //make a default configuration
+    
+    func configure(withEvent event: EventModel?)  {
+        guard let event = event else {
+            configureCellForNoEvent()
+            return
+        }
+        
+        switch event.eventCategory {
+        case .Hangout:
+            configureCellForHangout(event: event)
+        case .Meeting:
+            configureCellForMeeting(event: event)
+        case .Holiday:
+            configureCellForHoliday(event: event)
+        default:
+            configureCellForUncategorised(event: event)
+        }
+    }
+    
+    private func configureCellForHangout(event: EventModel) {
+        eventStartTimeLabel.text = event.getStartDateString
+        eventDurationLabel.text = event.eventDuration?.stringTime
+        
+        eventHeaderLabel.text = event.eventTitle
+        eventLocationLabel.text = event.eventLocation
+    }
+    
+    private func configureCellForMeeting(event: EventModel) {
+        eventStartTimeLabel.text = event.getStartDateString
+        eventDurationLabel.text = event.eventDuration?.stringTime
+        
+        eventHeaderLabel.text = event.eventTitle
+        eventLocationLabel.text = event.eventLocation
+    }
+    
+    private func configureCellForHoliday(event: EventModel) {
+        eventStartTimeLabel.text = "All Day"
+        eventDurationLabel.text = ""
+        
+        eventHeaderLabel.text = event.eventTitle
+        eventLocationLabel.text = ""
+    }
+    
+    private func configureCellForUncategorised(event: EventModel) {
+        
+    }
+    
+    private func configureCellForNoEvent() {
+        
+    }
 }

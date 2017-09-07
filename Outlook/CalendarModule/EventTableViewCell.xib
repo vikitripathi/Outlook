@@ -19,15 +19,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-CG-2Gj">
-                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                        <rect key="frame" x="8" y="8" width="45" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7Z-8Y-G15">
-                                <rect key="frame" x="0.0" y="4" width="40" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7Z-8Y-G15">
+                                <rect key="frame" x="0.0" y="4" width="45" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-Xg-diV">
-                                <rect key="frame" x="0.0" y="23" width="40" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-Xg-diV">
+                                <rect key="frame" x="0.0" y="6" width="45" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -41,12 +41,12 @@
                             <constraint firstAttribute="trailing" secondItem="y7Z-8Y-G15" secondAttribute="trailing" id="mkP-sb-nIB"/>
                             <constraint firstAttribute="height" constant="40" id="moo-UJ-0tc"/>
                             <constraint firstItem="RXn-Xg-diV" firstAttribute="centerX" secondItem="YWP-CG-2Gj" secondAttribute="centerX" id="tB4-dV-gf6"/>
-                            <constraint firstAttribute="width" constant="40" id="ulM-8m-Tmw"/>
+                            <constraint firstAttribute="width" constant="45" id="ulM-8m-Tmw"/>
                             <constraint firstItem="y7Z-8Y-G15" firstAttribute="leading" secondItem="YWP-CG-2Gj" secondAttribute="leading" id="v7U-Hr-jlN"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-XY-qAq">
-                        <rect key="frame" x="72" y="8" width="20" height="20"/>
+                        <rect key="frame" x="77" y="8" width="20" height="20"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="4BS-hM-9p5"/>
@@ -54,16 +54,16 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bf1-vu-7Av">
-                        <rect key="frame" x="104" y="8" width="204" height="43.5"/>
+                        <rect key="frame" x="109" y="8" width="199" height="43.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Dazzlr Sync Up" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dI-78-55S">
-                                <rect key="frame" x="0.0" y="0.0" width="174" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dI-78-55S">
+                                <rect key="frame" x="0.0" y="0.0" width="169" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quikr, Bangalore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb6-0t-nlu">
-                                <rect key="frame" x="0.0" y="23" width="144" height="18.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb6-0t-nlu">
+                                <rect key="frame" x="0.0" y="6" width="139" height="35.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

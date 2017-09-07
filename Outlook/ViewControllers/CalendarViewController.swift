@@ -122,7 +122,7 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController: DateViewDelegate {
     
     func showEventsHighlighted(_ daterView: DateViewController, withIndex index: Int) {
-        eventsViewController.reconfigureView(toRow: index)
+        //eventsViewController.reconfigureView(toRow: index)
     }
     
     func showDateViewAsActiveView(_ isActive: Bool) {
@@ -136,7 +136,7 @@ extension CalendarViewController: DateViewDelegate {
 extension CalendarViewController: EventViewDelegate {
     
     func showCalendarHighlighted(_ eventsView: EventViewController, withIndex index: Int) {
-        dateViewController.reconfigureView(toRow: index)
+        //dateViewController.reconfigureView(toRow: index)
     }
     
     func showEventViewAsActiveView(_ isActive: Bool) {

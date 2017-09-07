@@ -30,6 +30,10 @@ class CalendarModuleDataProvider {
         return dateList
     }
     
+    var currentEventList: [EventModel] {
+        return getStaticEventLists()
+    }
+    
     //check custom iterator implementation
     func createDateList(from startDateModel: DateModel,endDate endDateModel: DateModel) {
         var startDateModel = startDateModel
@@ -82,5 +86,17 @@ class CalendarModuleDataProvider {
         }
         
         return dateList
+    }
+    
+    private func getStaticEventLists() -> [EventModel] {
+        let event1 =  EventModel.dummyEventModel3
+        let event2 =  EventModel.dummyEventModel1
+        let event3 =  EventModel.dummyEventModel2
+        
+        var list = [EventModel]()
+        list.append(event1)
+        list.append(event2)
+        list.append(event3)
+        return list
     }
 }

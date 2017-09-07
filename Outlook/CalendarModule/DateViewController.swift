@@ -135,45 +135,6 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
         
-        
-//        if isLoading {
-//            return
-//        }
-//        //let indexPath = IndexPath(row: (weakSelf?.dataProvider.currentDateIndex)!, section: 0)
-//        let currentRowIndex = indexPath.row
-//        
-//        //move to service protocol
-//        let concurrentQueue = DispatchQueue(label: "DateViewCalendarQueue", attributes: .concurrent)
-//        weak var weakSelf = self
-//        
-//        if (currentRowIndex == 28) {
-//            concurrentQueue.async {
-//                //use guard let for wealself or check unowned
-//                weakSelf?.isLoading = true
-//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!
-//                
-//                DispatchQueue.main.async {
-//                    weakSelf?.collectionView.reloadData()
-//                    //                    let indexPath = IndexPath(row: currentRowIndex, section: 0)
-//                    //                    weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
-//                    weakSelf?.isLoading = false
-//                }
-//            }
-//            
-//        }else if (currentRowIndex == (dateList.count - 28)) {
-//            concurrentQueue.async {
-//                //use guard let for wealself or check unowned
-//                weakSelf?.isLoading = true
-//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
-//                
-//                DispatchQueue.main.async {
-//                    weakSelf?.collectionView.reloadData()
-//                    //                    let indexPath = IndexPath(row: currentRowIndex, section: 0)
-//                    //                    weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
-//                    weakSelf?.isLoading = false
-//                }
-//            }
-//        }
     }
     
     
