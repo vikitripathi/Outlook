@@ -196,8 +196,8 @@ extension CalendarViewController: DateViewDataSource {
 
 extension CalendarViewController: DateViewDelegate {
     
-    func showEventsHighlighted(_ daterView: DateViewController, withIndex index: Int) {
-        //eventsViewController.reconfigureView(toRow: index)
+    func DateView(_ dateView: DateViewController, didSelectCalendarModel model: CalendarModel) {
+        eventsViewController.scrollToCalendarModel(model)
     }
     
     func showDateViewAsActiveView(_ isActive: Bool) {
@@ -210,8 +210,8 @@ extension CalendarViewController: DateViewDelegate {
 
 extension CalendarViewController: EventViewDelegate {
     
-    func showCalendarHighlighted(_ eventsView: EventViewController, withIndex index: Int) {
-        //dateViewController.reconfigureView(toRow: index)
+    func EventView(_ eventsView: EventViewController, didSelectCalendarModel model: CalendarModel) {
+        dateViewController.scrollToCalendarModel(model)
     }
     
     func showEventViewAsActiveView(_ isActive: Bool) {

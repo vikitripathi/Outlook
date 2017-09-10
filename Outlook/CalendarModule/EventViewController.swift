@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol EventViewDelegate: class {
-    func showCalendarHighlighted(_ eventsView: EventViewController, withIndex index: Int)
+    func EventView(_ eventsView: EventViewController, didSelectCalendarModel model: CalendarModel)
     func showEventViewAsActiveView(_ isActive: Bool)
 }
 
@@ -105,6 +105,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
     }
     
+    func scrollToCalendarModel(_ model: CalendarModel) {
+        let indexPath: IndexPath = IndexPath(row: 0, section: dateList.index(of: model)!)
+        self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+    }
+    
     func updateDataSource(_ calendarList: [CalendarModel]) {
         let previousCount = dateList.count
         dateList = calendarList
@@ -126,14 +131,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDragging || scrollView.isDecelerating {
             delegate?.showEventViewAsActiveView(true)
-        }else {
-            
         }
         
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrolleViewBoundsHeight = scrollView.bounds.size.height
-        print("offsetY: \(offsetY) , contentHeight: \(contentHeight), scrolleViewBoundsHeight: \(scrolleViewBoundsHeight) ")
+        //print("offsetY: \(offsetY) , contentHeight: \(contentHeight), scrolleViewBoundsHeight: \(scrolleViewBoundsHeight) ")
         
         if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight) && !isLoading) {
             isLoading = true
@@ -177,13 +180,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        //let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
-        //delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
+        //Put optional check on indexpath everywhere
+        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+        
+        delegate?.EventView(self, didSelectCalendarModel: dateList[indexPath.section])
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
-        //delegate?.showCalendarHighlighted(self, withIndex: indexPath.section)
+//        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+//        delegate?.EventView(self, didSelectCalendarModel: dateList[indexPath.section])
     }
 
 }

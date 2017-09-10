@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DateViewDelegate: class {
-    func showEventsHighlighted(_ daterView: DateViewController, withIndex index: Int)
+    func DateView(_ dateView: DateViewController, didSelectCalendarModel model: CalendarModel)
     func showDateViewAsActiveView(_ isActive: Bool)
 }
 
@@ -58,7 +58,12 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self?.collectionView.reloadData()
                 //weakSelf?.isLoading = false
                 let indexPath = IndexPath(row: (self?.dataProvider.currentDayIndex(inCalendarList: calendarList))!, section: 0)
-                self?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+                
+                //let cell = self?.collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
+                //cell?.selectedStateBackgroundView.isHidden = false
+                
+                //self?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+                self?.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
             }
         })
     }
@@ -80,9 +85,25 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.collectionView.addGestureRecognizer(self.panGesture!)
     }
     
-    func reconfigureView(toRow row: Int) {
-        let indexPath: IndexPath = IndexPath(row: row, section: 0)
-        
+//    func reconfigureView(toRow row: Int) {
+//        let indexPath: IndexPath = IndexPath(row: row, section: 0)
+//        
+//        if let selectedIndexpaths = self.collectionView.indexPathsForSelectedItems {
+//            for previousIndexPath in selectedIndexpaths {
+//                let prevcell = collectionView.cellForItem(at: previousIndexPath) as? DateCollectionViewCell
+//                prevcell?.selectedStateBackgroundView.isHidden = true
+//                self.collectionView.deselectItem(at: previousIndexPath, animated: false)
+//            }
+//            //self.collectionView.reloadItems(at: selectedIndexpaths)
+//        }
+//        
+//        self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.top)
+//        let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
+//        cell?.selectedStateBackgroundView.isHidden = false
+//        
+//    }
+    
+    func scrollToCalendarModel(_ model: CalendarModel) {
         if let selectedIndexpaths = self.collectionView.indexPathsForSelectedItems {
             for previousIndexPath in selectedIndexpaths {
                 let prevcell = collectionView.cellForItem(at: previousIndexPath) as? DateCollectionViewCell
@@ -92,10 +113,13 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
             //self.collectionView.reloadItems(at: selectedIndexpaths)
         }
         
-        self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.top)
-        let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
-        cell?.selectedStateBackgroundView.isHidden = false
+        let indexPath = IndexPath(row: dateList.index(of: model)!, section: 0)
+        //let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
+        //cell?.selectedStateBackgroundView.isHidden = false
         
+        //collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+        
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
     }
     
     func updateDataSource(_ calendarList: [CalendarModel]) {
@@ -174,10 +198,19 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let selectedIndexpaths = self.collectionView.indexPathsForSelectedItems {
+            for previousIndexPath in selectedIndexpaths {
+                let prevcell = collectionView.cellForItem(at: previousIndexPath) as? DateCollectionViewCell
+                prevcell?.selectedStateBackgroundView.isHidden = true
+                self.collectionView.deselectItem(at: previousIndexPath, animated: false)
+            }
+            //self.collectionView.reloadItems(at: selectedIndexpaths)
+        }
+        
         let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
         cell?.selectedStateBackgroundView.isHidden = false
         
-        delegate?.showEventsHighlighted(self, withIndex: indexPath.row)
+        delegate?.DateView(self, didSelectCalendarModel: dateList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
