@@ -98,6 +98,20 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
+    func updateDataSource(_ calendarList: [CalendarModel]) {
+        let previousCount = dateList.count
+        dateList = calendarList
+        isLoading = true
+        let currentOffset = collectionView.contentOffset
+        let yOffset = Float(((dateList.count) - previousCount) / 7) * Float((collectionView.frame.size.width) / 7 )
+        let newOffset = CGPoint(x: (currentOffset.x), y: (currentOffset.y) + CGFloat(yOffset))
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+            self?.collectionView.setContentOffset(newOffset, animated: false)
+            self?.isLoading = false
+        }
+    }
+    
     //MARK: - ScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -117,16 +131,7 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         }else if (Float(offsetY) != 0 && Int(offsetY) < 50 && !isLoading ) { //make dynamic calculation
             isLoading = true
             self.datasource?.fetchDateViewData(isInitialFetch: false, isForPreviousData: true, completion: { [weak self] (calendarList) in
-                let previousCount = self?.dateList.count
-                self?.dateList = calendarList
-                DispatchQueue.main.async {
-                    let currentOffset = self?.collectionView.contentOffset
-                    let yOffset = Float(((self?.dateList.count)! - previousCount!) / 7) * Float((self?.collectionView.frame.size.width)! / 7 )
-                    let newOffset = CGPoint(x: (currentOffset?.x)!, y: (currentOffset?.y)! + CGFloat(yOffset))
-                    self?.collectionView.reloadData()
-                    self?.collectionView.setContentOffset(newOffset, animated: false)
-                    self?.isLoading = false
-                }
+                self?.updateDataSource(calendarList)
             })
         }
     }

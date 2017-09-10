@@ -105,6 +105,22 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
     }
     
+    func updateDataSource(_ calendarList: [CalendarModel]) {
+        let previousCount = dateList.count
+        dateList = calendarList
+        let currentCount = dateList.count
+        isLoading = true
+        let scrollToIndexPath = IndexPath(row: 0, section: (currentCount - previousCount))
+        DispatchQueue.main.async { [weak self] in
+            
+            //let indexPath = self?.tableView.indexPathForRow(at: visiblePoint)!
+            self?.tableView.reloadData()
+            //self?.tableView.setContentOffset(newOffset, animated: false)
+            self?.tableView.scrollToRow(at: scrollToIndexPath, at: .top, animated: false)
+            self?.isLoading = false
+        }
+    }
+    
     //MARK: - ScrollViewDelegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -130,22 +146,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             })
         }else if (Float(offsetY) != 0 && Int(offsetY) < 50 && !isLoading ) { //make dynamic calculation
             isLoading = true
-            let visiblePoint = scrollView.bounds.origin
+            //let visiblePoint = scrollView.bounds.origin
             self.datasource?.fetchEventsViewData(isInitialFetch: false, isForPreviousData: true, completion: { [weak self] (calendarList) in
-                let previousCount = self?.dateList.count
-                self?.dateList = calendarList
-                DispatchQueue.main.async {
-                    let currentCount = self?.dateList.count
-                    //let indexPath = self?.tableView.indexPathForRow(at: visiblePoint)!
-                    self?.tableView.reloadData()
-                    
-                    //self?.tableView.setContentOffset(newOffset, animated: false)
-                    
-                    //find previous indexpath and do calculation likewise
-                    let scrollToIndexPath = IndexPath(row: 0, section: (currentCount! - previousCount!))
-                    self?.tableView.scrollToRow(at: scrollToIndexPath, at: .top, animated: false)
-                    self?.isLoading = false
-                }
+                self?.updateDataSource(calendarList)
             })
         }
         
@@ -161,13 +164,16 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         //Intercept and recalculate the desired content offset
         //var targetOffset = recalculateUsingTargetContentOffset(targetContentOffset.pointee)
         
-        var indexPath = tableView.indexPathForRow(at: targetContentOffset.pointee)
+        let indexPath = tableView.indexPathForRow(at: targetContentOffset.pointee)
         
+        guard let indexpath = indexPath else {
+            return
+        }
         //Reset the targetContentOffset with your recalculated value
         //let p = withUnsafeMutablePointer(to: &targetOffset) { $0 }
         //targetContentOffset.pointee.y = targetOffset.y
-        indexPath?.row = 0
-        targetContentOffset.pointee.y = tableView.rectForHeader(inSection: indexPath!.section).origin.y
+        //indexPath?.row = 0
+        targetContentOffset.pointee.y = tableView.rect(forSection: indexpath.section).origin.y
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

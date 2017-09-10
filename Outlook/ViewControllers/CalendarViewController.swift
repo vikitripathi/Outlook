@@ -145,14 +145,14 @@ extension CalendarViewController: EventViewDataSource {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!  //TODO: Check race conditions
-                    
+                    weakSelf?.dateViewController.updateDataSource((weakSelf?.dateList)!)
                     completion((weakSelf?.dateList)!)
                 }
             }else {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!  //TODO: Check race conditions
-                    
+                    weakSelf?.dateViewController.updateDataSource((weakSelf?.dateList)!)
                     completion((weakSelf?.dateList)!)
                 }
             }
@@ -178,14 +178,14 @@ extension CalendarViewController: DateViewDataSource {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!  //TODO: Check race conditions
-                    
+                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!)
                     completion((weakSelf?.dateList)!)
                 }
             }else {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!  //TODO: Check race conditions
-                    
+                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!)
                     completion((weakSelf?.dateList)!)
                 }
             }
