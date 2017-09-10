@@ -62,6 +62,11 @@ class CalendarModuleDataProvider {
             newList.append(CalendarModel(date: startDate, events: currentEventList)) //add events accordingly from db
             startDate.next()
         }
+        
+        startDate = previousStartDate
+        startDate.offsetDateModel(byMonth: -2)
+        startDate.offsetToSunday()
+        
         return updatedDateList(atStart: true, withList: newList)
     }
     
