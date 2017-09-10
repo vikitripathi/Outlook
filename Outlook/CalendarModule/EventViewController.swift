@@ -5,7 +5,7 @@
 //  Created by abhishek dutt on 03/09/17.
 //  Copyright © 2017 abhishek dutt. All rights reserved.
 //
-
+import Foundation
 import UIKit
 
 protocol EventViewDelegate: class {
@@ -149,6 +149,25 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             })
         }
         
+    }
+    
+    func recalculateUsingTargetContentOffset(_ point: CGPoint) -> CGPoint {
+        
+        return CGPoint()
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        //Intercept and recalculate the desired content offset
+        //var targetOffset = recalculateUsingTargetContentOffset(targetContentOffset.pointee)
+        
+        var indexPath = tableView.indexPathForRow(at: targetContentOffset.pointee)
+        
+        //Reset the targetContentOffset with your recalculated value
+        //let p = withUnsafeMutablePointer(to: &targetOffset) { $0 }
+        //targetContentOffset.pointee.y = targetOffset.y
+        indexPath?.row = 0
+        targetContentOffset.pointee.y = tableView.rectForHeader(inSection: indexPath!.section).origin.y
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
