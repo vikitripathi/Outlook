@@ -128,7 +128,7 @@ class CalendarViewController: UIViewController {
 }
 
 extension CalendarViewController: EventViewDataSource {
-    func fetchEventsViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
+    func fetchEventsViewData(isInitialFetch: Bool, isForPreviousData: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
         //dataProvider
         if isInitialFetch {
             //move to service protocol
@@ -141,13 +141,27 @@ extension CalendarViewController: EventViewDataSource {
                 completion((weakSelf?.dateList)!)
             }
         }else {
-            
+            if isForPreviousData {
+                weak var weakSelf = self
+                concurrentQueue.async(flags: .barrier) {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!  //TODO: Check race conditions
+                    
+                    completion((weakSelf?.dateList)!)
+                }
+            }else {
+                weak var weakSelf = self
+                concurrentQueue.async(flags: .barrier) {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!  //TODO: Check race conditions
+                    
+                    completion((weakSelf?.dateList)!)
+                }
+            }
         }
     }
 }
 
 extension CalendarViewController: DateViewDataSource {
-    func fetchDateViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
+    func fetchDateViewData(isInitialFetch: Bool, isForPreviousData: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ())) {
         if isInitialFetch {
             //move to service protocol
             //use guard let for weakself or check unowned
@@ -160,7 +174,21 @@ extension CalendarViewController: DateViewDataSource {
                 completion((weakSelf?.dateList)!)
             }
         }else {
-            
+            if isForPreviousData {
+                weak var weakSelf = self
+                concurrentQueue.async(flags: .barrier) {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!  //TODO: Check race conditions
+                    
+                    completion((weakSelf?.dateList)!)
+                }
+            }else {
+                weak var weakSelf = self
+                concurrentQueue.async(flags: .barrier) {
+                    weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!  //TODO: Check race conditions
+                    
+                    completion((weakSelf?.dateList)!)
+                }
+            }
         }
     }
 }

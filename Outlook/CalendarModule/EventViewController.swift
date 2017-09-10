@@ -14,7 +14,7 @@ protocol EventViewDelegate: class {
 }
 
 protocol EventViewDataSource: class {
-    func fetchEventsViewData(isInitialFetch: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ()))
+    func fetchEventsViewData(isInitialFetch: Bool, isForPreviousData: Bool, completion: @escaping ((_ calendarList: [CalendarModel]) -> ()))
 }
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -42,11 +42,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.datasource?.fetchEventsViewData(isInitialFetch: true, completion: { [weak self] (calendarList) in
+        self.datasource?.fetchEventsViewData(isInitialFetch: true, isForPreviousData: false, completion: { [weak self] (calendarList) in
             
             self?.dateList = calendarList
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
+                let indexPath = IndexPath(row: 0, section: (self?.dataProvider.currentDayIndex(inCalendarList: calendarList))!)
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false) //set content offset by calculating
             }
         })
         //move to service protocol
@@ -115,39 +117,38 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrolleViewBoundsHeight = scrollView.bounds.size.height
-        print("offsetY: \(offsetY) , contentHeight: \(contentHeight) , boundsHeight: \(scrolleViewBoundsHeight)")
+        print("offsetY: \(offsetY) , contentHeight: \(contentHeight), scrolleViewBoundsHeight: \(scrolleViewBoundsHeight) ")
         
-        if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight)) {
-            let concurrentQueue = DispatchQueue(label: "EventViewCalendarQueue", attributes: .concurrent)
-            weak var weakSelf = self
-            concurrentQueue.async {
-//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!
-//                DispatchQueue.main.async {
-//                    weakSelf?.collectionView.reloadData()
-//                }
-            }
-        } else if (Float(offsetY) != 0 && Int(offsetY) == 50 ) { //make dynamic calculation
-            let concurrentQueue = DispatchQueue(label: "EventViewCalendarQueue", attributes: .concurrent)
-            weak var weakSelf = self
-            concurrentQueue.async {
-//                let previousCount = weakSelf?.dateList.count
-//                weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!
-//                DispatchQueue.main.async {
-//                    weakSelf?.collectionView.reloadData()
-//                    //weakSelf?.collectionView.scrollRectToVisible(CGRect, animated: <#T##Bool#>)
-//                    //weakSelf?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
-//                    print(weakSelf?.dateList.count ?? "Empty")
-//                    let currentOffset = weakSelf?.collectionView.contentOffset
-//                    let yOffset = Float(((weakSelf?.dateList.count)! - previousCount!) / 7) * Float((weakSelf?.collectionView.frame.size.width)! / 7 )
-//                    print(currentOffset ?? "empty current offset")
-//                    print(yOffset)
-//                    let newOffset = CGPoint(x: (currentOffset?.x)!, y: (currentOffset?.y)! + CGFloat(yOffset))
-//                    weakSelf?.collectionView.reloadData()
-//                    weakSelf?.collectionView.setContentOffset(newOffset, animated: false)
-//                }
-            }
-            
+        if (Float(offsetY) != 0 && Int(offsetY) > Int(contentHeight - scrolleViewBoundsHeight) && !isLoading) {
+            isLoading = true
+            self.datasource?.fetchEventsViewData(isInitialFetch: false, isForPreviousData: false, completion: { [weak self] (calendarList) in
+                self?.dateList = calendarList
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.isLoading = false
+                }
+            })
+        }else if (Float(offsetY) != 0 && Int(offsetY) < 50 && !isLoading ) { //make dynamic calculation
+            isLoading = true
+            let visiblePoint = scrollView.bounds.origin
+            self.datasource?.fetchEventsViewData(isInitialFetch: false, isForPreviousData: true, completion: { [weak self] (calendarList) in
+                let previousCount = self?.dateList.count
+                self?.dateList = calendarList
+                DispatchQueue.main.async {
+                    let currentCount = self?.dateList.count
+                    //let indexPath = self?.tableView.indexPathForRow(at: visiblePoint)!
+                    self?.tableView.reloadData()
+                    
+                    //self?.tableView.setContentOffset(newOffset, animated: false)
+                    
+                    //find previous indexpath and do calculation likewise
+                    let scrollToIndexPath = IndexPath(row: 0, section: (currentCount! - previousCount!))
+                    self?.tableView.scrollToRow(at: scrollToIndexPath, at: .top, animated: false)
+                    self?.isLoading = false
+                }
+            })
         }
+        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

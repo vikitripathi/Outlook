@@ -45,8 +45,6 @@ struct DateModel {
                 return "Friday"
             case .Saturday:
                 return "Saturday"
-            default:
-                return ""
             }
         }
     }
