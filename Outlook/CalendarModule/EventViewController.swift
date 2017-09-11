@@ -110,14 +110,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
     }
     
-    func updateDataSource(_ calendarList: [CalendarModel]) {
+    func updateDataSource(_ calendarList: [CalendarModel], isForPreviousData: Bool) {
         let previousCount = dateList.count
         dateList = calendarList
         let currentCount = dateList.count
         isLoading = true
         
         let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
-        let scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexPath.section))
+        
+        var scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexPath.section))
+        if !isForPreviousData {
+            scrollToIndexPath = IndexPath(row: 0, section:  (indexPath.section))
+        }
         
         
         DispatchQueue.main.async { [weak self] in
@@ -155,7 +159,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             isLoading = true
             //let visiblePoint = scrollView.bounds.origin
             self.datasource?.fetchEventsViewData(isInitialFetch: false, isForPreviousData: true, completion: { [weak self] (calendarList) in
-                self?.updateDataSource(calendarList)
+                self?.updateDataSource(calendarList, isForPreviousData: true)
             })
         }
         

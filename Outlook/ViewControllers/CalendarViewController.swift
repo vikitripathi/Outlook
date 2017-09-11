@@ -178,14 +178,14 @@ extension CalendarViewController: DateViewDataSource {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForPreviousTwoMonths())!  //TODO: Check race conditions
-                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!)
+                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!,isForPreviousData: true)
                     completion((weakSelf?.dateList)!)
                 }
             }else {
                 weak var weakSelf = self
                 concurrentQueue.async(flags: .barrier) {
                     weakSelf?.dateList = (weakSelf?.dataProvider.updateDateListForComingTwoMonths())!  //TODO: Check race conditions
-                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!)
+                    weakSelf?.eventsViewController.updateDataSource((weakSelf?.dateList)!,isForPreviousData: false)
                     completion((weakSelf?.dateList)!)
                 }
             }
