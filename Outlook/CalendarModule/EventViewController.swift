@@ -115,7 +115,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         dateList = calendarList
         let currentCount = dateList.count
         isLoading = true
-        let scrollToIndexPath = IndexPath(row: 0, section: (currentCount - previousCount))
+        
+        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+        let scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexPath.section))
+        
+        
         DispatchQueue.main.async { [weak self] in
             
             //let indexPath = self?.tableView.indexPathForRow(at: visiblePoint)!

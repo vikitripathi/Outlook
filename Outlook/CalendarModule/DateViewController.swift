@@ -34,6 +34,8 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var isLoading = false
     private var isInitialLoading = false
     
+    private var selectedIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,15 +57,24 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             self?.dateList = calendarList
             DispatchQueue.main.async {
-                self?.collectionView.reloadData()
                 //weakSelf?.isLoading = false
-                let indexPath = IndexPath(row: (self?.dataProvider.currentDayIndex(inCalendarList: calendarList))!, section: 0)
+                let currentDayIndex = self?.dataProvider.currentDayIndex(inCalendarList: calendarList)
+                var currentDayModel = self?.dateList[currentDayIndex!]
+                currentDayModel!.date.modelState = OutlookCalendar.DateView.CellState.SelectedState(isDayOne: false)
+                self?.dateList[currentDayIndex!] = currentDayModel!
+                
+                
+                
+                let indexPath = IndexPath(row: currentDayIndex!, section: 0)
+                self?.selectedIndexPath = indexPath
+                
+                self?.collectionView.reloadData()
                 
                 //let cell = self?.collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
                 //cell?.selectedStateBackgroundView.isHidden = false
                 
-                //self?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
-                self?.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
+                self?.collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+                //self?.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
             }
         })
     }
@@ -104,28 +115,44 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
 //    }
     
     func scrollToCalendarModel(_ model: CalendarModel) {
-        if let selectedIndexpaths = self.collectionView.indexPathsForSelectedItems {
-            for previousIndexPath in selectedIndexpaths {
-                let prevcell = collectionView.cellForItem(at: previousIndexPath) as? DateCollectionViewCell
-                prevcell?.selectedStateBackgroundView.isHidden = true
-                self.collectionView.deselectItem(at: previousIndexPath, animated: false)
-            }
-            //self.collectionView.reloadItems(at: selectedIndexpaths)
+        
+        if let prevSelectedIndexpath = selectedIndexPath {
+            let currentDayIndex = prevSelectedIndexpath.row
+            var currentDayModel = dateList[currentDayIndex]
+            currentDayModel.date.modelState = nil
+            dateList[currentDayIndex] = currentDayModel
         }
+        
         
         let indexPath = IndexPath(row: dateList.index(of: model)!, section: 0)
         //let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
         //cell?.selectedStateBackgroundView.isHidden = false
+        selectedIndexPath = indexPath
         
-        //collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+        let currentDayIndex = indexPath.row
+        var currentDayModel = dateList[currentDayIndex]
+        currentDayModel.date.modelState = OutlookCalendar.DateView.CellState.SelectedState(isDayOne: false)
+        dateList[currentDayIndex] = currentDayModel
+        collectionView.reloadData()
         
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: false) //set content offset by calculating
+        
+        //collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.top)
     }
     
     func updateDataSource(_ calendarList: [CalendarModel]) {
         let previousCount = dateList.count
         dateList = calendarList
         isLoading = true
+        
+        if let prevSelectedIndexpath = selectedIndexPath {
+            let currentDayIndex = (dateList.count - previousCount) + prevSelectedIndexpath.row
+            var currentDayModel = dateList[currentDayIndex]
+            currentDayModel.date.modelState = OutlookCalendar.DateView.CellState.SelectedState(isDayOne: false)
+            dateList[currentDayIndex] = currentDayModel
+            selectedIndexPath = IndexPath(row: currentDayIndex, section: 0)
+        }
+        
         let currentOffset = collectionView.contentOffset
         let yOffset = Float(((dateList.count) - previousCount) / 7) * Float((collectionView.frame.size.width) / 7 )
         let newOffset = CGPoint(x: (currentOffset.x), y: (currentOffset.y) + CGFloat(yOffset))
@@ -147,6 +174,14 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
             isLoading = true
             self.datasource?.fetchDateViewData(isInitialFetch: false, isForPreviousData: false, completion: { [weak self] (calendarList) in
                 self?.dateList = calendarList
+                
+                if let prevSelectedIndexpath = self?.selectedIndexPath {
+                    let currentDayIndex = prevSelectedIndexpath.row
+                    var currentDayModel = self?.dateList[currentDayIndex]
+                    currentDayModel?.date.modelState = OutlookCalendar.DateView.CellState.SelectedState(isDayOne: false)
+                    self?.dateList[currentDayIndex] = currentDayModel!
+                }
+                
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                     self?.isLoading = false
@@ -189,33 +224,47 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as! DateCollectionViewCell
-        if cell.isSelected {
+        
+        let currentCellModel = dateList[indexPath.row].date as DateModel
+        
+        guard let state = currentCellModel.modelState else {
+            cell.selectedStateBackgroundView.isHidden = true
+            return
+        }
+        
+        switch state {
+        case .SelectedState(_):
             cell.selectedStateBackgroundView.isHidden = false
-        }else {
+        default:
             cell.selectedStateBackgroundView.isHidden = true
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let selectedIndexpaths = self.collectionView.indexPathsForSelectedItems {
-            for previousIndexPath in selectedIndexpaths {
-                let prevcell = collectionView.cellForItem(at: previousIndexPath) as? DateCollectionViewCell
-                prevcell?.selectedStateBackgroundView.isHidden = true
-                self.collectionView.deselectItem(at: previousIndexPath, animated: false)
-            }
-            //self.collectionView.reloadItems(at: selectedIndexpaths)
+        if let prevSelectedIndexpath = selectedIndexPath {
+            let currentDayIndex = prevSelectedIndexpath.row
+            var currentDayModel = dateList[currentDayIndex]
+            currentDayModel.date.modelState = nil
+            dateList[currentDayIndex] = currentDayModel
         }
         
-        let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
-        cell?.selectedStateBackgroundView.isHidden = false
+        //let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
+        //cell?.selectedStateBackgroundView.isHidden = false
+        
+        selectedIndexPath = indexPath
+        let currentDayIndex = indexPath.row
+        var currentDayModel = dateList[currentDayIndex]
+        currentDayModel.date.modelState = OutlookCalendar.DateView.CellState.SelectedState(isDayOne: false)
+        dateList[currentDayIndex] = currentDayModel
+        collectionView.reloadData()
         
         delegate?.DateView(self, didSelectCalendarModel: dateList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
-        cell?.selectedStateBackgroundView.isHidden  = true
+        //let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell
+        //cell?.selectedStateBackgroundView.isHidden  = true
     }
     
     //MARK: - UICollectionViewDelegateFlowLayout

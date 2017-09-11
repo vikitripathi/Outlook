@@ -18,6 +18,8 @@ struct DateModel {
     
     var thisDate: Date
     
+    var modelState: OutlookCalendar.DateView.CellState?
+    
     static let myCalendar = Calendar(identifier: .gregorian)
     
     enum WeekDayIndex: Int {

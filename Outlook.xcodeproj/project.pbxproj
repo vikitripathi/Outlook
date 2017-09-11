@@ -213,7 +213,6 @@
 				024BDFE61F5B3F2900CEEAE0 /* DateViewController.xib */,
 				024BDFEA1F5B3F4300CEEAE0 /* EventViewController.swift */,
 				024BDFEB1F5B3F4300CEEAE0 /* EventViewController.xib */,
-				024BDFEE1F5B6E5300CEEAE0 /* CalendarConstants.swift */,
 				024BDFF31F5BAE6500CEEAE0 /* DateCollectionViewCell.swift */,
 				024BDFF41F5BAE6500CEEAE0 /* DateCollectionViewCell.xib */,
 				0233B9491F5C91FA003491C0 /* EventTableViewCell.swift */,
@@ -235,6 +234,7 @@
 		02D33FE11F5CED210067A87D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				024BDFEE1F5B6E5300CEEAE0 /* CalendarConstants.swift */,
 				02D33FDB1F5CECED0067A87D /* CalendarModel.swift */,
 				02D33FDD1F5CED0C0067A87D /* DateModel.swift */,
 				02D33FDF1F5CED1D0067A87D /* EventModel.swift */,
