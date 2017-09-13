@@ -16,6 +16,10 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet var dateViewHeight: NSLayoutConstraint!
     
+    @IBOutlet var calendarLabelsViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet var calendarLabelView: UIView!
+    
     var dateViewState: OutlookCalendar.ViewsCategory?
     
     fileprivate var dataProvider = CalendarModuleDataProvider()
@@ -48,6 +52,7 @@ class CalendarViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
+        //calendarLabelsViewHeight.constant = self.view.frame.width / 7
         
         dateViewController.delegate = self
         dateViewController.datasource = self
@@ -60,13 +65,20 @@ class CalendarViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        calendarLabelView.isHidden = false
+        configureView(0)
+        
+        /*
         weak var weakSelf = self
         DispatchQueue.main.async {
             // do stuff here
+            weakSelf?.calendarLabelView.isHidden = false
             weakSelf?.configureView(0)
             //weakSelf?.add(asChildViewController: (weakSelf?.dateViewController)!)
             //add(asChildViewController: eventsViewController)
         }
+        */
+        
     }
 
     override func didReceiveMemoryWarning() {
