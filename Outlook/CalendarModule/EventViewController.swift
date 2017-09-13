@@ -99,7 +99,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                     WeatherStore().fetchWeather(location: location, time: timeInterval.secondsString) { (weatherResult) in
                         switch weatherResult {
                         case let .success(weather):
-                            print("weather to display: \(weather.summary)")
                             DispatchQueue.main.async {
                                 eventModel.weatherAtEventTime = weather
                                 cell.configureWeather(event: eventModel)
@@ -217,7 +216,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         //let p = withUnsafeMutablePointer(to: &targetOffset) { $0 }
         //targetContentOffset.pointee.y = targetOffset.y
         //indexPath?.row = 0
-        targetContentOffset.pointee.y = tableView.rect(forSection: indexpath.section).origin.y
+        targetContentOffset.pointee.y = tableView.rectForRow(at: indexpath).origin.y - 15.0
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
