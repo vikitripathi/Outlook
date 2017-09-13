@@ -9,39 +9,17 @@
 import UIKit
 
 class MailViewController: UIViewController {
-
-    fileprivate var eventsViewController: EventViewController = {
-        var viewController = EventViewController()
-        return viewController
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = "Mail"
-        add(asChildViewController: eventsViewController)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    fileprivate func add(asChildViewController viewController: UIViewController) {
-        // Add Child View Controller
-        addChildViewController(viewController)
-        
-        // Configure Child View
-        viewController.view.frame = view.bounds
-        
-        // Add Child View as Subview
-        view.addSubview(viewController.view)
-        
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleRightMargin, .flexibleBottomMargin]
-        
-        // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
     }
 
     /*
