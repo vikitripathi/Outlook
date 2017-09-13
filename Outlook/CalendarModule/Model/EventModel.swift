@@ -32,9 +32,9 @@ struct EventModel {
 
 extension EventModel {
     
-    //Use coredata to fetch these event details
-    static let dummyEventModel1: EventModel = {
-        let now = Date()
+    //Use coredata/ API to fetch these event details
+    static func dummyEventModel1(eventDate: Date) -> EventModel {
+        let now = eventDate
         var components = myCalendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
         components.hour = 9
         components.minute = 30
@@ -49,10 +49,10 @@ extension EventModel {
         let category = EventCategory.Meeting
         
        return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category, weatherAtEventTime: nil)
-    }()
+    }
     
-    static let dummyEventModel2: EventModel = {
-        let now = Date()
+    static func dummyEventModel2(eventDate: Date) -> EventModel{
+        let now = eventDate
         var components = myCalendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
         components.hour = 16
         components.minute = 30
@@ -67,10 +67,10 @@ extension EventModel {
         let category = EventCategory.Hangout
         
         return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category, weatherAtEventTime: nil)
-    }()
+    }
     
-    static let dummyEventModel3: EventModel = {
-        let now = Date()
+    static func dummyEventModel3(eventDate: Date) -> EventModel{
+        let now = eventDate
         var components = myCalendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
         components.hour = 0
         components.minute = 0
@@ -82,7 +82,7 @@ extension EventModel {
         let category = EventCategory.Holiday
         
         return EventModel(eventStartTime: eventStart, eventDuration: nil, eventTitle: title, eventLocation: nil, eventAttendees: nil, eventCategory: category, weatherAtEventTime: nil)
-    }()
+    }
 }
 
 extension EventModel {

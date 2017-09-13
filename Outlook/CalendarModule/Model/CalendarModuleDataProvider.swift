@@ -35,17 +35,14 @@ class CalendarModuleDataProvider {
         return dateList
     }
     
-    var currentEventList: [EventModel] {
-        return getStaticEventLists()
-    }
-    
     //check custom iterator implementation
     func createDateList(from startDateModel: DateModel,endDate endDateModel: DateModel) {
         var startDateModel = startDateModel
         let endDateModel = endDateModel
         
         while startDateModel <= endDateModel {
-            dateList.append(CalendarModel(date: startDateModel, events: currentEventList))
+            let list: [EventModel] = getStaticEventLists(eventDate: startDateModel.thisDate)
+            dateList.append(CalendarModel(date: startDateModel, events: list))
             startDateModel.next()
         }
     }
@@ -59,7 +56,8 @@ class CalendarModuleDataProvider {
         startDate.offsetToSunday()
         
         while startDate < previousStartDate {
-            newList.append(CalendarModel(date: startDate, events: currentEventList)) //add events accordingly from db
+            let list: [EventModel] = getStaticEventLists(eventDate: startDate.thisDate)
+            newList.append(CalendarModel(date: startDate, events: list)) //add events accordingly from db
             startDate.next()
         }
         
@@ -79,7 +77,8 @@ class CalendarModuleDataProvider {
         
         previousEndDate.next()
         while previousEndDate <= endDate {
-            newList.append(CalendarModel(date: previousEndDate, events: currentEventList))
+            let list: [EventModel] = getStaticEventLists(eventDate: previousEndDate.thisDate)
+            newList.append(CalendarModel(date: previousEndDate, events: list))
             previousEndDate.next()
         }
         return updatedDateList(atStart: false, withList: newList)
@@ -98,12 +97,14 @@ class CalendarModuleDataProvider {
         return dateList
     }
     
-    private func getStaticEventLists() -> [EventModel] {
-        let event1 =  EventModel.dummyEventModel3
-        let event2 =  EventModel.dummyEventModel1
-        let event3 =  EventModel.dummyEventModel2
+    private func getStaticEventLists(eventDate: Date) -> [EventModel] {
+        let event1 =  EventModel.dummyEventModel3(eventDate: eventDate)
+        let event2 =  EventModel.dummyEventModel1(eventDate: eventDate)
+        let event3 =  EventModel.dummyEventModel2(eventDate: eventDate)
         
         var list = [EventModel]()
+        
+        // TODO: Have the list ordered
         list.append(event1)
         list.append(event2)
         list.append(event3)
