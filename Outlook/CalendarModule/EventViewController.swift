@@ -29,6 +29,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private var isLoading = false
     
+    let locationManager = LocationManager.sharedManager
+    let concurrentQueue = DispatchQueue(label: "EventModuleConcurrentQueue", attributes: .concurrent)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,10 +41,20 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.estimatedRowHeight = 100
         tableView.contentInset = UIEdgeInsets.zero
         
+        locationManager.delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadData() {
         self.datasource?.fetchEventsViewData(isInitialFetch: true, isForPreviousData: false, completion: { [weak self] (calendarList) in
             
             self?.dateList = calendarList
@@ -51,12 +64,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false) //set content offset by calculating
             }
         })
-        //move to service protocol
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,7 +76,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
-        cell.configure(withEvent: dateList[indexPath.section].events![indexPath.row])
+        let eventModel = dateList[indexPath.section].events![indexPath.row]
+        cell.configure(withEvent: eventModel)
         return cell
     }
     
@@ -78,8 +86,33 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //let cell = cell as! EventTableViewCell
-        //cell.testDayLabel.text = String(describing:indexPath.section)
+        let cell = cell as! EventTableViewCell
+        
+        var eventModel = dateList[indexPath.section].events![indexPath.row]
+        if let location = locationManager.userLocation {
+            
+            if eventModel.weatherAtEventTime == nil  {
+                //location fecthed after user permission
+                let timeInterval = eventModel.eventStartTime.timeIntervalSince1970 //events time
+                
+                concurrentQueue.async {
+                    WeatherStore().fetchWeather(location: location, time: timeInterval.secondsString) { (weatherResult) in
+                        switch weatherResult {
+                        case let .success(weather):
+                            print("weather to display: \(weather.summary)")
+                            DispatchQueue.main.async {
+                                eventModel.weatherAtEventTime = weather
+                                cell.configureWeather(event: eventModel)
+                            }
+                        case let .failure(error):
+                            print("Error fetching weather: \(error)")
+                        }
+                    }
+                }
+                
+            }
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -199,4 +232,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        delegate?.EventView(self, didSelectCalendarModel: dateList[indexPath.section])
     }
 
+}
+
+extension EventViewController: LocationManagerDelegate {
+    
+    func fetchedUserLocation(_ userLocation: Location) {
+        loadData()
+    }
 }

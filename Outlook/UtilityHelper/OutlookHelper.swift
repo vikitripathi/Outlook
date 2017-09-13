@@ -52,3 +52,19 @@ extension UIColor {
         return UIColor.init(colorLiteralRed: red/255, green: green/255, blue: blue/255, alpha: alpha)
     }
 }
+
+
+extension Double {
+    var locationString: String {
+        return String(format: "%.4f", self)
+    }
+    
+    var secondsString: String {
+        return String(format: "%.0f", self)
+    }
+    
+    var temperatureString: String {
+        return String(format: "%.1f", self)
+    }
+}
+

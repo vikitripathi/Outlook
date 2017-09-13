@@ -17,6 +17,8 @@ struct EventModel {
     var eventAttendees: [String]?
     var eventCategory: EventCategory
     
+    var weatherAtEventTime: Weather? = nil
+    
     static let myCalendar = Calendar(identifier: .gregorian)
     
     enum EventCategory {
@@ -46,7 +48,7 @@ extension EventModel {
         let attendees = ["Abhishek", "Spoorthi", "Srikrishna", "Prem"]
         let category = EventCategory.Meeting
         
-       return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category)
+       return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category, weatherAtEventTime: nil)
     }()
     
     static let dummyEventModel2: EventModel = {
@@ -64,7 +66,7 @@ extension EventModel {
         let attendees = ["Abhishek", "Spoorthi"]
         let category = EventCategory.Hangout
         
-        return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category)
+        return EventModel(eventStartTime: eventStart, eventDuration: duration, eventTitle: title, eventLocation: location, eventAttendees: attendees, eventCategory: category, weatherAtEventTime: nil)
     }()
     
     static let dummyEventModel3: EventModel = {
@@ -79,7 +81,7 @@ extension EventModel {
         let title = "Onam"
         let category = EventCategory.Holiday
         
-        return EventModel(eventStartTime: eventStart, eventDuration: nil, eventTitle: title, eventLocation: nil, eventAttendees: nil, eventCategory: category)
+        return EventModel(eventStartTime: eventStart, eventDuration: nil, eventTitle: title, eventLocation: nil, eventAttendees: nil, eventCategory: category, weatherAtEventTime: nil)
     }()
 }
 
