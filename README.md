@@ -15,5 +15,5 @@ Will be finishing and refactoring the code a little bit by evening and will upda
 <p>
   <img src="https://user-images.githubusercontent.com/6864402/30432586-bc3563bc-997f-11e7-9abb-493cfee1dd8d.jpg" width="350" style="padding: 20px;"/>
   
-  <img src="https://user-images.githubusercontent.com/6864402/30432585-bc2f9702-997f-11e7-9f49-83d86f3fab7f.jpg" width="350" style="padding: 20px;"/>
+  <img src="https://user-images.githubusercontent.com/6864402/30432585-bc2f9702-997f-11e7-9f49-83d86f3fab7f.jpg" width="350" style="padding: 100px;"/>
 </p>
