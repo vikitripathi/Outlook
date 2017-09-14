@@ -195,6 +195,18 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        //Intercept and recalculate the desired content offset
+        let indexPath = collectionView.indexPathForItem(at: targetContentOffset.pointee)
+        
+        guard let indexpath = indexPath else {
+            return
+        }
+        
+        let cell = collectionView.cellForItem(at: indexpath)
+        targetContentOffset.pointee.y = (cell?.frame.origin.y)!
+    }
     
     //MARK: - UICollectionViewDataSource
     
