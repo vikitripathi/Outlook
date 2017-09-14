@@ -148,6 +148,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let currentCount = dateList.count
         isLoading = true
         
+        guard self.tableView.indexPathsForVisibleRows != nil else {
+            return
+        }
+        
         //check for nil and guard check
         let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
         
