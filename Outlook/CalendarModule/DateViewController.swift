@@ -221,13 +221,9 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell",
                                                       for: indexPath) as! DateCollectionViewCell
-        let currentCellModel = dateList[indexPath.row].date as DateModel
+        //let currentCellModel = dateList[indexPath.row].date as DateModel
         
         //configure cell
-        cell.dateLabel.text = String(describing: currentCellModel.thisDay)
-        cell.monthLabel.text = currentCellModel.getCurrentMonth()
-        //cell.yearLabel.text = String(describing: currentCellModel.currentYear)
-        cell.yearLabel.isHidden = true
         
         return cell
     }
@@ -241,14 +237,44 @@ class DateViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         guard let state = currentCellModel.modelState else {
             cell.selectedStateBackgroundView.isHidden = true
+            cell.dateLabel.text = String(describing: currentCellModel.thisDay)
+            
+            if currentCellModel.thisDay == 1 {
+                cell.monthLabel.text = currentCellModel.getCurrentMonth()
+            }else {
+                cell.monthLabel.text = nil
+            }
+            
+            if currentCellModel.currentMonth == 1 && currentCellModel.thisDay == 1{
+                cell.yearLabel.text = String(describing: currentCellModel.currentYear)
+            }else{
+                cell.yearLabel.text = nil
+            }
+            
             return
         }
         
         switch state {
         case .SelectedState(_):
             cell.selectedStateBackgroundView.isHidden = false
+            cell.dateLabel.text = String(describing: currentCellModel.thisDay)
+            cell.monthLabel.text = nil
+            cell.yearLabel.text = nil
         default:
             cell.selectedStateBackgroundView.isHidden = true
+            cell.dateLabel.text = String(describing: currentCellModel.thisDay)
+            
+            if currentCellModel.thisDay == 1 {
+                cell.monthLabel.text = currentCellModel.getCurrentMonth()
+            }else {
+                cell.monthLabel.text = nil
+            }
+            
+            if currentCellModel.currentMonth == 1 && currentCellModel.thisDay == 1{
+                cell.yearLabel.text = String(describing: currentCellModel.currentYear)
+            }else{
+                cell.yearLabel.text = nil
+            }
         }
         
     }
