@@ -148,6 +148,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let currentCount = dateList.count
         isLoading = true
         
+        //check for nil and guard check
         let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
         
         var scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexPath.section))
