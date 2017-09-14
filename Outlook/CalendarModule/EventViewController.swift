@@ -153,11 +153,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         //check for nil and guard check
-        let indexPath: IndexPath = (self.tableView.indexPathsForVisibleRows?[0])!
+        let indexPath: IndexPath? = self.tableView.indexPathsForVisibleRows?.first
         
-        var scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexPath.section))
+        guard let indexpath = indexPath else {
+            return
+        }
+        
+        var scrollToIndexPath = IndexPath(row: 0, section: ((currentCount - previousCount) + indexpath.section))
         if !isForPreviousData {
-            scrollToIndexPath = IndexPath(row: 0, section:  (indexPath.section))
+            scrollToIndexPath = IndexPath(row: 0, section:  (indexpath.section))
         }
         
         
