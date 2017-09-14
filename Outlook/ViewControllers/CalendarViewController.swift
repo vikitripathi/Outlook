@@ -50,6 +50,9 @@ class CalendarViewController: UIViewController {
         self.title = "Calendar"
         
         navigationController?.navigationBar.isTranslucent = false
+        let navigationBar = navigationController?.navigationBar
+        navigationBar?.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        navigationBar?.shadowImage = UIImage()
         
         dateViewState = OutlookCalendar.ViewsCategory.DateView(state: .Normal)
         //calendarLabelsViewHeight.constant = self.view.frame.width / 7

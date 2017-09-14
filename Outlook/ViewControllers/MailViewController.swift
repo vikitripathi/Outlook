@@ -22,7 +22,7 @@ class MailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "Mail"
-        
+
         /*
         // Request access to calendar first
         eventStore.requestAccess(to: .event, completion: { [weak self] (granted, error) in

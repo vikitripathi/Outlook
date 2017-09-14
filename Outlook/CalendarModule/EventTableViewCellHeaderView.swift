@@ -25,7 +25,16 @@ class EventTableViewCellHeaderView: UIView {
     }
     
     func configureDate(_ sectionModel: DateModel)  {
-        label?.text = "\(sectionModel.day.getWeekDayString()), \(sectionModel.getCurrentMonth()) \(sectionModel.thisDay)"
+        if sectionModel.currentMonth == 1 && sectionModel.thisDay == 1{
+            label?.text = "\(sectionModel.day.getWeekDayString()), \(sectionModel.getCurrentMonth()) \(sectionModel.thisDay) \(sectionModel.currentYear)"
+        }else{
+            label?.text = "\(sectionModel.day.getWeekDayString()), \(sectionModel.getCurrentMonth()) \(sectionModel.thisDay)"
+        }
+        
+        // TODO: configure it conditional based on datemodel state
+        label?.textColor = UIColor.appleBlue()
+        label?.alpha = 0.7
+        self.backgroundColor = UIColor.makeColor(red: 240.0, green: 252.0, blue: 255.0, alpha: 1.0)
     }
     
     required init?(coder aDecoder: NSCoder) {
